@@ -3,23 +3,35 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\RecieptController;
+use App\Http\Controllers\Api\ClientsController;
+use App\Http\Controllers\Api\TaxRatesController;
+use App\Http\Controllers\Api\PettyCashController;
 use App\Http\Controllers\Api\StockTableController;
 use App\Http\Controllers\Api\ResProductController;
 use App\Http\Controllers\Api\ResSectionController;
+use App\Http\Controllers\Api\AssetTypesController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ResCategoryController;
 use App\Http\Controllers\Api\ItemCategoryController;
+use App\Http\Controllers\Api\ClientsSalesController;
+use App\Http\Controllers\Api\PaymentTypesController;
 use App\Http\Controllers\Api\ResSalesTableController;
 use App\Http\Controllers\Api\StockDischargeController;
+use App\Http\Controllers\Api\AssetsAccountsController;
+use App\Http\Controllers\Api\Expeses_ResturantController;
+use App\Http\Controllers\Api\PaymentTypesSalesController;
 use App\Http\Controllers\Api\ResProductRecieptsController;
+use App\Http\Controllers\Api\RestaurantRequisitionController;
 use App\Http\Controllers\Api\ResCategoryResProductsController;
 use App\Http\Controllers\Api\ItemCategoryStockTablesController;
 use App\Http\Controllers\Api\ResProductResSalesTablesController;
 use App\Http\Controllers\Api\StockTableStockDischargesController;
 use App\Http\Controllers\Api\ResSectionStockDischargesController;
+use App\Http\Controllers\Api\AssetTypesAllAssetsAccountsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,4 +135,61 @@ Route::name('api.')
             ItemCategoryStockTablesController::class,
             'store',
         ])->name('item-categories.stock-tables.store');
+
+        Route::apiResource('all-tax-rates', TaxRatesController::class);
+
+        Route::apiResource(
+            'restaurant-requisitions',
+            RestaurantRequisitionController::class
+        );
+
+        Route::apiResource('petty-cashes', PettyCashController::class);
+
+        Route::apiResource(
+            'expeses-resturants',
+            Expeses_ResturantController::class
+        );
+
+        Route::apiResource('sales', SaleController::class);
+
+        Route::apiResource('all-clients', ClientsController::class);
+
+        // Clients Sales
+        Route::get('/all-clients/{clients}/sales', [
+            ClientsSalesController::class,
+            'index',
+        ])->name('all-clients.sales.index');
+        Route::post('/all-clients/{clients}/sales', [
+            ClientsSalesController::class,
+            'store',
+        ])->name('all-clients.sales.store');
+
+        Route::apiResource('all-payment-types', PaymentTypesController::class);
+
+        // PaymentTypes Sales
+        Route::get('/all-payment-types/{paymentTypes}/sales', [
+            PaymentTypesSalesController::class,
+            'index',
+        ])->name('all-payment-types.sales.index');
+        Route::post('/all-payment-types/{paymentTypes}/sales', [
+            PaymentTypesSalesController::class,
+            'store',
+        ])->name('all-payment-types.sales.store');
+
+        Route::apiResource(
+            'all-assets-accounts',
+            AssetsAccountsController::class
+        );
+
+        Route::apiResource('all-asset-types', AssetTypesController::class);
+
+        // AssetTypes All Assets Accounts
+        Route::get('/all-asset-types/{assetTypes}/all-assets-accounts', [
+            AssetTypesAllAssetsAccountsController::class,
+            'index',
+        ])->name('all-asset-types.all-assets-accounts.index');
+        Route::post('/all-asset-types/{assetTypes}/all-assets-accounts', [
+            AssetTypesAllAssetsAccountsController::class,
+            'store',
+        ])->name('all-asset-types.all-assets-accounts.store');
     });

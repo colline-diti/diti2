@@ -154,6 +154,34 @@ return [
         ],
     ],
 
+    //creating all Payment Types
+    'all_payment_types' => [
+        'name' => 'Payment Type',
+        'index_title' => 'Payment Type List',
+        'new_title' => 'New Payment Type',
+        'create_title' => 'Create Payment Type',
+        'edit_title' => 'Edit Payment Type',
+        'show_title' => 'Show Payment Type',
+        'inputs' => [
+            'payment_name' => 'Name',
+            'description' => 'Description',
+        ],
+    ],
+
+    //creating all Payment Types
+    'all__tax_rates' => [
+        'name' => 'Tax Rates',
+        'index_title' => 'Tax Rates List',
+        'new_title' => 'New Tax Rate',
+        'create_title' => 'Create Tax Rate',
+        'edit_title' => 'Edit Tax Rate',
+        'show_title' => 'Show Tax Rate',
+        'inputs' => [
+            'tax_name' => 'Name',
+            'rate' => 'Rate',
+        ],
+    ],
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

@@ -14,6 +14,9 @@ use App\Http\Controllers\ResCategoryController;
 use App\Http\Controllers\ResSalesTableController;
 use App\Http\Controllers\StockDischargeController;
 
+//Business Procurement 
+use App\Http\Controllers\PaymentTypesController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,4 +63,6 @@ Route::prefix('/')
 
         Route::resource('reciepts', RecieptController::class);
         Route::resource('item-categories', ItemCategoryController::class);
+
+        Route::resource('all-payment-types', PaymentTypesController::class);
     });

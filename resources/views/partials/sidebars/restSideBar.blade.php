@@ -30,6 +30,15 @@
                         <li><a href="{{ route('res-categories.index') }}"> <i class="ti-tag"></i> Add Product Category</a></li>   
                     </ul>
                 </li> 
+                <li><a class="sidebar-sub-toggle"><i class="ti-truck"></i> Business Procurement <span
+                    class="sidebar-collapse-icon ti-angle-down"></span></a>
+                    <ul>                        
+                        <li><a href=""> <i class="ti-tag"></i> Requisition</a></li> 
+                        <li><a href=""> <i class="ti-tag"></i> Invoices</a></li> 
+                        <li><a href=""> <i class="ti-tag"></i> Tax Rates</a></li>  
+                        <li><a href="{{ route('all-payment-types.index') }}"> <i class="ti-tag"></i> Payment Types</a></li>   
+                    </ul>
+                </li> 
                 <li><a class="sidebar-sub-toggle"><i class="ti-bar-chart-alt"></i> Reports <span
                     class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>                        
