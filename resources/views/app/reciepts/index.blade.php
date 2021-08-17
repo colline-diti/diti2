@@ -136,18 +136,19 @@
                                             <div class="container">
                                                 <h4>Search for product</h4>
                                                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search...">
-                                          
-                                        
                                                 <ul id="result" class="user-list">
+                                                    @php
+                                                    //DB::table('user')->where('email', $userEmail)->update(array('member_type' => $plan));
+                                                    $resProducts =  DB::select("select * from res_products"); 
+                                                    //$resProducts = array("Volvo", "BMW", "Toyota");
+                                                @endphp
+                                                    @forelse ($resProducts as $resProduct)
+                                                
+                                                <div class="shop-items hidden-print" id="myUL">
+                                                     
                                                 <li>
-                                                        <div class="shop-items hidden-print" id="myUL">
+                                                   
                                                                         <!--Available products-->
-                                                                        @php
-                                                                        //DB::table('user')->where('email', $userEmail)->update(array('member_type' => $plan));
-                                                                        $resProducts =  DB::select("select * from res_products"); 
-                                                                        //$resProducts = array("Volvo", "BMW", "Toyota");
-                                                                    @endphp
-                                                                        @forelse ($resProducts as $resProduct)
                                                                         <div class="shop-item">
                                                                             <p class="shop-item-title" style="color:black"><a
                                                                                     href="#">{{ $resProduct->product_name }}</a></p>
@@ -168,6 +169,7 @@
                                                                             @endif
                                                                         <hr style="color:black;width:100%;">
                                                                         </div>
+                                                                    </div>
                                         
                                                                     </div>
                                                 </li>
