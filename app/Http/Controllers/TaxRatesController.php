@@ -53,7 +53,7 @@ class TaxRatesController extends Controller
         $taxRates = TaxRates::create($validated);
 
         return redirect()
-            ->route('all-tax-rates.edit', $taxRates)
+            ->route('all-tax-rates.index', $taxRates)
             ->withSuccess(__('crud.common.created'));
     }
 

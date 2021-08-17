@@ -16,7 +16,8 @@ use App\Http\Controllers\StockDischargeController;
 
 //Business Procurement 
 use App\Http\Controllers\PaymentTypesController;
-
+use App\Http\Controllers\TaxRatesController;
+use App\Http\Controllers\RestaurantRequisitionsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -65,4 +66,6 @@ Route::prefix('/')
         Route::resource('item-categories', ItemCategoryController::class);
 
         Route::resource('all-payment-types', PaymentTypesController::class);
+        Route::resource('all-tax-rates', TaxRatesController::class);
+        Route::resource('restaurant=requisitions', RestaurantRequisitionsController::class);
     });

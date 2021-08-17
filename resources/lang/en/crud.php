@@ -169,7 +169,7 @@ return [
     ],
 
     //creating all Payment Types
-    'all__tax_rates' => [
+    'all_tax_rates' => [
         'name' => 'Tax Rates',
         'index_title' => 'Tax Rates List',
         'new_title' => 'New Tax Rate',
@@ -182,6 +182,23 @@ return [
         ],
     ],
 
+
+        //Restaurant Requisitions Crud
+    'restaurant_requisitions' => [
+        'name' => 'Restuarant Requisitions',
+        'index_title' => 'Restaurant Requisitions List',
+        'new_title' => 'New Restaurant Requisitions',
+        'create_title' => 'Create Restaurant Requisition',
+        'edit_title' => 'Edit Restaurant Requisition',
+        'show_title' => 'Show Restaurant Requisitions',
+        'inputs' => [
+            'item_name' => 'Name',
+            'quantity' => 'Quanity',
+            'dateofDelivery' => 'Delivery Date',
+            'status' => 'Status',
+            'particulars' => 'Particulars',
+        ],
+    ],
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

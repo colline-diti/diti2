@@ -84,6 +84,7 @@
                                         <th class="text-center">
                                             @lang('crud.common.actions')
                                         </th>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @forelse($itemCategories as $itemCategory)

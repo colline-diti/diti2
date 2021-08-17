@@ -53,7 +53,7 @@ class RestaurantRequisitionController extends Controller
         $restaurantRequisition = RestaurantRequisition::create($validated);
 
         return redirect()
-            ->route('restaurant-requisitions.edit', $restaurantRequisition)
+            ->route('restaurant-requisitions.index', $restaurantRequisition)
             ->withSuccess(__('crud.common.created'));
     }
 
