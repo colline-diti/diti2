@@ -17,6 +17,7 @@ class CreateResSectionsTable extends Migration
             $table->bigIncrements('id');
             $table->string('section_name');
             $table->text('description');
+
             $table->timestamps();
         });
     }

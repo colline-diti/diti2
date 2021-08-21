@@ -41,9 +41,8 @@ class ItemCategoryStockTablesController extends Controller
 
         $validated = $request->validate([
             'item_name' => ['required', 'max:255', 'string'],
-            'unit' => ['required', 'max:255', 'string'],
-            'buying_price' => ['required', 'max:255'],
-            'quantity' => ['required', 'numeric'],
+            'quantity' => ['required', 'max:255'],
+            'unit_id' => ['required', 'exists:units,id'],
             'remarks' => ['required', 'max:255', 'string'],
         ]);
 

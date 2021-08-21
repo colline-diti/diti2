@@ -51,21 +51,21 @@
                                 <div class="card-body">
                                     <div  style="margin: auto;"  class="col-lg-12">
                                         <x-form
-                                                method="POST"
-                                                action="{{ route('res-sections.store') }}"
-                                                class="mt-4"
-                                            >
-                                                @include('app.res_sections.form-inputs')
+                                            method="POST"
+                                            action="{{ route('res-sections.store') }}"
+                                            class="mt-4"
+                                        >
+                                            @include('app.res_sections.form-inputs')
 
-                                                <div class="mt-4">
-                                                    
+                                            <div class="mt-4">
+                                                
 
-                                                    <button type="submit" class="btn btn-sm btn-primary float-right">
-                                                        <i class="icon ti-save"></i>
-                                                        @lang('crud.common.create')
-                                                    </button>
-                                                </div>
-                                            </x-form>
+                                                <button type="submit" class="btn btn-sm btn-primary float-right">
+                                                    <i class="icon ti-save"></i>
+                                                    @lang('crud.common.create')
+                                                </button>
+                                            </div>
+                                        </x-form>
                                     </div>                              
                                 </div>
                             </div>

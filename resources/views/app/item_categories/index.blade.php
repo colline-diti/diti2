@@ -61,7 +61,7 @@
                                         <div class="input-group-append">
                                             <button
                                                 type="submit"
-                                                class="btn btn-primary"
+                                                class="btn  btn-primary"
                                             >
                                                 <i class="icon ti-search"></i>
                                             </button>
@@ -103,7 +103,7 @@
                                                 >
                                                     <button
                                                         type="button"
-                                                        class="btn btn-light"
+                                                        class="btn btn-sm btn-light"
                                                     >
                                                         <i class="icon ti-pencil-alt"></i>
                                                     </button>
@@ -114,7 +114,7 @@
                                                 >
                                                     <button
                                                         type="button"
-                                                        class="btn btn-light"
+                                                        class="btn btn-sm btn-light text-success"
                                                     >
                                                         <i class="icon ti-eye"></i>
                                                     </button>

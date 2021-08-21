@@ -3,7 +3,7 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
-use App\Models\ItemCategory;
+use App\Models\Unit;
 use App\Models\StockDischarge;
 
 use Tests\TestCase;
@@ -11,7 +11,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ItemCategoryStockDischargesTest extends TestCase
+class UnitStockDischargesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,40 +31,38 @@ class ItemCategoryStockDischargesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_item_category_stock_discharges()
+    public function it_gets_unit_stock_discharges()
     {
-        $itemCategory = ItemCategory::factory()->create();
+        $unit = Unit::factory()->create();
         $stockDischarges = StockDischarge::factory()
             ->count(2)
             ->create([
-                'item_category_id' => $itemCategory->id,
+                'unit_id' => $unit->id,
             ]);
 
         $response = $this->getJson(
-            route('api.item-categories.stock-discharges.index', $itemCategory)
+            route('api.units.stock-discharges.index', $unit)
         );
 
-        $response->assertOk()->assertSee($stockDischarges[0]->description);
+        $response->assertOk()->assertSee($stockDischarges[0]->return_date);
     }
 
     /**
      * @test
      */
-    public function it_stores_the_item_category_stock_discharges()
+    public function it_stores_the_unit_stock_discharges()
     {
-        $itemCategory = ItemCategory::factory()->create();
+        $unit = Unit::factory()->create();
         $data = StockDischarge::factory()
             ->make([
-                'item_category_id' => $itemCategory->id,
+                'unit_id' => $unit->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route('api.item-categories.stock-discharges.store', $itemCategory),
+            route('api.units.stock-discharges.store', $unit),
             $data
         );
-
-        unset($data['item_category_id']);
 
         $this->assertDatabaseHas('stock_discharges', $data);
 
@@ -72,9 +70,6 @@ class ItemCategoryStockDischargesTest extends TestCase
 
         $stockDischarge = StockDischarge::latest('id')->first();
 
-        $this->assertEquals(
-            $itemCategory->id,
-            $stockDischarge->item_category_id
-        );
+        $this->assertEquals($unit->id, $stockDischarge->unit_id);
     }
 }

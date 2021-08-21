@@ -1,7 +1,7 @@
 @php $editing = isset($resSection) @endphp
 
 <div class="row">
-    <x-inputs.group class="col-sm-6">
+    <x-inputs.group class="col-sm-12 col-lg-6">
         <x-inputs.text
             name="section_name"
             label="Section Name"
@@ -11,13 +11,13 @@
         ></x-inputs.text>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-6">
+    <x-inputs.group class="col-sm-12 col-lg-6">
         <x-inputs.textarea
             name="description"
             label="Description"
             maxlength="255"
             required
-            >{{ old('description', ($editing ? $itemCategory->description : ''))
+            >{{ old('description', ($editing ? $resSection->description : ''))
             }}</x-inputs.textarea
         >
     </x-inputs.group>

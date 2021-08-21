@@ -15,12 +15,14 @@ class CreateStockDischargesTable extends Migration
     {
         Schema::create('stock_discharges', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('quantity_issued');
-            $table->string('section')->default('Service');
-            $table->text('description');
-            $table->string('issued_by');
+            $table->bigInteger('quantity_issued');
             $table->unsignedBigInteger('stock_table_id');
+            $table->unsignedBigInteger('unit_id');
             $table->unsignedBigInteger('res_section_id');
+            $table->date('return_date');
+            $table->text('remarks');
+            $table->string('issued_by');
+            $table->unsignedBigInteger('user_id');
 
             $table->timestamps();
         });

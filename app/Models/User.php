@@ -28,6 +28,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function stockDischarges()
+    {
+        return $this->hasMany(StockDischarge::class);
+    }
+
     public function isSuperAdmin()
     {
         return $this->hasRole('super-admin');

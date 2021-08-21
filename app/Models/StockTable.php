@@ -14,9 +14,8 @@ class StockTable extends Model
     protected $fillable = [
         'item_name',
         'quantity',
-        'unit',
-        'buying_price',
         'item_category_id',
+        'unit_id',
         'remarks',
     ];
 
@@ -27,6 +26,11 @@ class StockTable extends Model
     public function itemCategory()
     {
         return $this->belongsTo(ItemCategory::class);
+    }
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
     }
 
     public function stockDischarges()

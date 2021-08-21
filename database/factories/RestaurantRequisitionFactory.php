@@ -23,9 +23,7 @@ class RestaurantRequisitionFactory extends Factory
     public function definition()
     {
         return [
-            'item_name' => $this->faker->text(255),
-            'quantity' => $this->faker->randomNumber,
-            'dateofDelivery' => $this->faker->text(255),
+            'requisition_code' => $this->faker->randomNumber,
             'status' => $this->faker->word,
             'Particulars' => $this->faker->text(255),
         ];

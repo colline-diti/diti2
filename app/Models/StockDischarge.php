@@ -13,16 +13,27 @@ class StockDischarge extends Model
 
     protected $fillable = [
         'quantity_issued',
-        'section',
         'stock_table_id',
+        'unit_id',
         'res_section_id',
-        'description',
+        'return_date',
+        'remarks',
         'issued_by',
+        'user_id',
     ];
 
     protected $searchableFields = ['*'];
 
     protected $table = 'stock_discharges';
+
+    protected $casts = [
+        'return_date' => 'date',
+    ];
+
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class);
+    }
 
     public function resSection()
     {
@@ -32,5 +43,10 @@ class StockDischarge extends Model
     public function stockTable()
     {
         return $this->belongsTo(StockTable::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

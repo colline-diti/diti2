@@ -36,17 +36,16 @@ return [
 
     'stock_tables' => [
         'name' => 'Stock Tables',
-        'index_title' => 'StockTables List',
+        'index_title' => 'Stock Table List',
         'new_title' => 'New Stock table',
         'create_title' => 'Create StockTable',
         'edit_title' => 'Edit StockTable',
         'show_title' => 'Show StockTable',
         'inputs' => [
             'item_name' => 'Item Name',
-            'quantity' => 'Quantity',
-            'unit' => 'Unit',
-            'item_category_id' => 'Item Category',
-            'buying_price' => 'Buying Price',            
+            'quantity' => 'Quantity In',
+            'unit_id' => 'Unit',
+            'item_category_id' => 'Item Category',           
             'remarks' => 'Remarks',
         ],
     ],
@@ -79,7 +78,7 @@ return [
         ],
     ],
 
-    'restuarant_sections' => [
+    'res_sections' => [
         'name' => 'Restuarant Sections',
         'index_title' => 'ResSections List',
         'new_title' => 'New Res section',
@@ -92,20 +91,36 @@ return [
         ],
     ],
 
+    'units' => [
+        'name' => 'Item Unit',
+        'index_title' => 'Item Unit List',
+        'new_title' => 'New Item Units',
+        'create_title' => 'Create Item Unit',
+        'edit_title' => 'Edit Item Unit',
+        'show_title' => 'Show Item Unit',
+        'inputs' => [
+            'unit_name' => 'Unit Name',
+            'unit_description' => 'Description',
+        ],
+    ],
+
+
     'stock_discharges' => [
         'name' => 'Stock Discharges',
-        'index_title' => 'StockDischarges List',
+        'index_title' => 'Stock Discharges List',
         'new_title' => 'New Stock discharge',
-        'create_title' => 'Create StockDischarge',
-        'edit_title' => 'Edit StockDischarge',
-        'show_title' => 'Show StockDischarge',
+        'create_title' => 'Create Stock Discharge',
+        'edit_title' => 'Edit Stock Discharge',
+        'show_title' => 'Show Stock Discharge',
         'inputs' => [
             'quantity_issued' => 'Quantity Issued',
             'stock_table_id' => 'Item',
+            'unit_id' => 'Unit',
             'res_section_id' => 'Section',
-            'date' => 'Return Date',
-            'description' => 'Remarks',
+            'return_date' => 'Return Date',
+            'remarks' => 'Remarks',
             'issued_by' => 'Issued By',
+            'user_id' => 'Recieved By',
         ],
     ],
 
@@ -192,13 +207,43 @@ return [
         'edit_title' => 'Edit Restaurant Requisition',
         'show_title' => 'Show Restaurant Requisitions',
         'inputs' => [
-            'item_name' => 'Name',
-            'quantity' => 'Quanity',
-            'dateofDelivery' => 'Delivery Date',
+            'requisition_code' => 'Requisition Code',
             'status' => 'Status',
-            'particulars' => 'Particulars',
+            'Particulars' => 'Description',
         ],
     ],
+
+      //Item Requisitions Crud
+      'requisition_items' => [
+        'name' => 'Requisition Items',
+        'index_title' => 'Requisition Items List',
+        'new_title' => 'New Requisition Items',
+        'create_title' => 'Create Requisition Items',
+        'edit_title' => 'Edit Requisition Items',
+        'show_title' => 'Show Requisition Items',
+        'inputs' => [
+            'name' => 'Name',
+            'restaurant_requisition_id' => 'Requisition Identifier',
+        ],
+    ],
+
+    //Requisition Delivery Crud
+    'requisition_item_requisition_deliveries' => [
+        'name' => 'Requisition Items',
+        'index_title' => 'Requisition Items List',
+        'new_title' => 'New Requisition Items',
+        'create_title' => 'Create Requisition Items',
+        'edit_title' => 'Edit Requisition Items',
+        'show_title' => 'Show Requisition Items',
+        'inputs' => [
+            'requisition_item_id' => 'Item',
+            'item_quantity' => 'Quantity',
+            'delivery_date' => 'Delivery Date',
+            'remarks'=> 'Remarks',
+        ],
+    ],
+
+
     'roles' => [
         'name' => 'Roles',
         'index_title' => 'Roles List',

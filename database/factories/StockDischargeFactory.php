@@ -23,12 +23,14 @@ class StockDischargeFactory extends Factory
     public function definition()
     {
         return [
-            'quantity_issued' => $this->faker->randomNumber(0),
-            'section' => $this->faker->text(255),
-            'description' => $this->faker->sentence(15),
+            'quantity_issued' => $this->faker->randomNumber,
+            'return_date' => $this->faker->date,
+            'remarks' => $this->faker->sentence(15),
             'issued_by' => $this->faker->text(255),
-            'stock_table_id' => \App\Models\StockTable::factory(),
+            'unit_id' => \App\Models\Unit::factory(),
             'res_section_id' => \App\Models\ResSection::factory(),
+            'stock_table_id' => \App\Models\StockTable::factory(),
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }

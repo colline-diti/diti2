@@ -24,12 +24,14 @@ class StockDischargeUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'quantity_issued' => ['required', 'numeric'],   
-            'section' => ['max:255', 'string'],
+            'quantity_issued' => ['required', 'max:255'],
             'stock_table_id' => ['required', 'exists:stock_tables,id'],
+            'unit_id' => ['required', 'exists:units,id'],
             'res_section_id' => ['required', 'exists:res_sections,id'],
-            'description' => ['required', 'max:255', 'string'],
+            'return_date' => ['required', 'date'],
+            'remarks' => ['required', 'max:255', 'string'],
             'issued_by' => ['required', 'max:255', 'string'],
+            'user_id' => ['required', 'exists:users,id'],
         ];
     }
 }

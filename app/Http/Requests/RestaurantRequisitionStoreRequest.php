@@ -24,9 +24,7 @@ class RestaurantRequisitionStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'item_name' => ['required', 'max:255', 'string'],
-            'quantity' => ['required', 'numeric'],
-            'dateofDelivery' => ['required', 'max:255', 'string'],
+            'requisition_code' => ['required', 'max:255'],
             'status' => ['required', 'max:255', 'string'],
             'Particulars' => ['required', 'max:255', 'string'],
         ];

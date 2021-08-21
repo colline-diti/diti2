@@ -15,9 +15,7 @@ class CreateRestaurantRequisitionsTable extends Migration
     {
         Schema::create('restaurant_requisitions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('item_name');
-            $table->integer('quantity');
-            $table->string('dateofDelivery');
+            $table->bigInteger('requisition_code');
             $table->string('status')->default('Pending');
             $table->string('Particulars');
 

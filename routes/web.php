@@ -4,20 +4,26 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
-use App\Http\Controllers\StockTableController;
 use App\Http\Controllers\RecieptController;
-use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ResProductController;
-use App\Http\Controllers\ResSectionController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ResCategoryController;
 use App\Http\Controllers\ResSalesTableController;
-use App\Http\Controllers\StockDischargeController;
+
 
 //Business Procurement 
 use App\Http\Controllers\PaymentTypesController;
 use App\Http\Controllers\TaxRatesController;
-use App\Http\Controllers\RestaurantRequisitionsController;
+use App\Http\Controllers\RestaurantRequisitionController;
+use App\Http\Controllers\RequisitionItemController;
+use App\Http\Controllers\RequisitionDeliveryController;
+
+//For Inventory Management
+use App\Http\Controllers\UnitController;
+use App\Http\Controllers\StockTableController;
+use App\Http\Controllers\ItemCategoryController;
+use App\Http\Controllers\ResSectionController;
+use App\Http\Controllers\StockDischargeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,5 +73,8 @@ Route::prefix('/')
 
         Route::resource('all-payment-types', PaymentTypesController::class);
         Route::resource('all-tax-rates', TaxRatesController::class);
-        Route::resource('restaurant=requisitions', RestaurantRequisitionsController::class);
+        Route::resource('restaurant-requisitions', RestaurantRequisitionController::class);
+        Route::resource('requisition-items', RequisitionItemController::class);
+        Route::resource('requisition-deliveries', RequisitionDeliveryController::class);
+        Route::resource('units', UnitController::class);
     });

@@ -52,8 +52,6 @@ class ResSectionTest extends TestCase
 
         $response = $this->postJson(route('api.res-sections.store'), $data);
 
-        unset($data['description']);
-
         $this->assertDatabaseHas('res_sections', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);
@@ -75,8 +73,6 @@ class ResSectionTest extends TestCase
             route('api.res-sections.update', $resSection),
             $data
         );
-
-        unset($data['description']);
 
         $data['id'] = $resSection->id;
 

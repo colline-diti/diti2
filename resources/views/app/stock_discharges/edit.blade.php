@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Hello, {{ Auth::user()->name }} <span>Welcome Here</span></h1>
+                    <h1>@lang('crud.stock_discharges.edit_title')</h1>
                 </div>
             </div>
         </div>
@@ -15,8 +15,8 @@
             <div class="page-header">
                 <div class="page-title">
                     <ol class="breadcrumb">
-                        <a class="breadcrumb-item" href="{{ URL::route('home') }}"> Dashboard</a>
-                    <a class="breadcrumb-item" href="{{ URL::route('stock-tables.create') }}"> Stock Management</a>
+                        <a class="breadcrumb-item" href="{{ URL::route('cafeDashboard') }}"> Dashboard</a>
+                    <a class="breadcrumb-item" href="{{ URL::route('stock-discharges.create') }}"> Stock Discharge</a>
                     </ol>
                 </div>
             </div>
@@ -33,11 +33,11 @@
             
                              <!-- Create new Role-->
                              <a><span class="glyphicon glyphicon-edit"></span>
-                                Edit Stock Decharges:
+                                Edit  Stock Discharge Item
                              </a>
                              <a class="btn btn-sm btn-info" href="#" >
-                                <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                Edit Stock Discharge Details
+                                <span class="glyphicon glyphicon-edit"></span><i class="ti-pencil-alt"></i>
+                                Edit Stock Discharge Item
                             </a>
                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                                 Back </span>
@@ -51,35 +51,29 @@
                                 <div class="card-body">
                                     <div  style="margin: auto;"  class="col-lg-12">
                                         <x-form
-                                        method="PUT"
-                                        action="{{ route('stock-discharges.update', $stockDischarge) }}"
-                                        class="mt-4"
-                                    >
-                                        @include('app.stock_discharges.form-inputs')
-                        
-                                        <div class="mt-4">
-                                            <a
-                                                href="{{ route('stock-discharges.index') }}"
-                                                class="btn btn-light"
-                                            >
-                                                <i class="icon ion-md-return-left text-primary"></i>
-                                                @lang('crud.common.back')
-                                            </a>
-                        
-                                            <a
-                                                href="{{ route('stock-discharges.create') }}"
-                                                class="btn btn-light"
-                                            >
-                                                <i class="icon ion-md-add text-primary"></i>
-                                                @lang('crud.common.create')
-                                            </a>
-                        
-                                            <button type="submit" class="btn btn-primary float-right">
-                                                <i class="icon ion-md-save"></i>
-                                                @lang('crud.common.update')
-                                            </button>
-                                        </div>
-                                    </x-form>
+                                            method="PUT"
+                                            action="{{ route('stock-discharges.update', $stockDischarge) }}"
+                                            class="mt-4"
+                                        >
+                                            @include('app.stock_discharges.form-inputs')
+
+                                            <div class="mt-4">
+                                                <a
+                                                    href="{{ route('stock-discharges.index') }}"
+                                                    class="btn btn-sm btn-light"
+                                                >
+                                                    <i class="icon ion-md-return-left text-primary"></i>
+                                                    @lang('crud.common.back')
+                                                </a>
+
+                                        
+
+                                                <button type="submit" class="btn btn-sm btn-primary float-right">
+                                                    <i class="icon ti-save"></i>
+                                                    @lang('crud.common.update')
+                                                </button>
+                                            </div>
+                                        </x-form>
                                     </div>                              
                                 </div>
                             </div>

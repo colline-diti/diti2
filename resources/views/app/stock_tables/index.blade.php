@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>{{  request()->route()->uri }}</span></h1>
+                    <h1> @lang('crud.stock_tables.index_title')</span></h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <a class="breadcrumb-item" href="{{ route('cafeDashboard') }}"> Dashboard</a>
-                        <a class="breadcrumb-item" href="{{ route('stock-tables.index') }}"> Stock Management</a>
+                        <a class="breadcrumb-item" href="{{ route('stock-tables.index') }}"> Items</a>
                     </ol>
                 </div>
             </div>
@@ -32,12 +32,12 @@
                         <h4 class="card-title">
                               <!-- Create new User-->
                               <a><span class="glyphicon glyphicon-edit"></span>
-                                Stock List:
+                                Stock Item List:
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('stock-tables.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span>
-                                 Create Stock
+                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
+                                 Create Stock Item
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                               Back </span>
@@ -77,18 +77,15 @@
                                         <th class="text-left">
                                             @lang('crud.stock_tables.inputs.item_name')
                                         </th>
-                                        <th class="text-right">
+                                        <th class="text-left">
                                             @lang('crud.stock_tables.inputs.quantity')
                                         </th>
                                         <th class="text-left">
-                                            @lang('crud.stock_tables.inputs.unit')
-                                        </th>
-                                        <th class="text-left">
                                             @lang('crud.stock_tables.inputs.item_category_id')
-                                        </th>
+                                        </th>                                       
                                         <th class="text-left">
-                                            @lang('crud.stock_tables.inputs.buying_price')
-                                        </th>                                      
+                                            @lang('crud.stock_tables.inputs.unit_id')
+                                        </th>                                     
                                         <th class="text-left">
                                             @lang('crud.stock_tables.inputs.remarks')
                                         </th>
@@ -101,13 +98,13 @@
                                         @forelse($stockTables as $stockTable)
                                         <tr>
                                             <td>{{ $stockTable->item_name ?? '-' }}</td>
-                                            <td>{{ $stockTable->quantity ?? '-' }}</td>
-                                            <td>{{ $stockTable->unit ?? '-' }}</td>
+                                            <td>{{ $stockTable->quantity ?? '-' }}</td>                                            
                                             <td>{{
                                                     optional($stockTable->itemCategory)->name
                                                     ?? '-' }}
-                                            </td>
-                                            <td>{{ $stockTable->buying_price ?? '-' }}</td>                                            
+                                            </td> 
+                                            <td>{{ optional($stockTable->unit)->unit_name ?? '-'
+                                            }}</td>                                                                                      
                                             <td>{{ $stockTable->remarks ?? '-' }}</td>
                                             <td class="text-center" style="width: 134px;">
                                                 <div
@@ -121,7 +118,7 @@
                                                     >
                                                         <button
                                                             type="button"
-                                                            class="btn btn-light"
+                                                            class="btn btn-sm btn-light"
                                                         >
                                                             <i class="icon ti-pencil-alt"></i>
                                                         </button>
@@ -132,7 +129,7 @@
                                                     >
                                                         <button 
                                                             type="button"
-                                                            class="btn btn-light text-success"
+                                                            class="btn btn-sm btn-light text-success"
                                                         >
                                                             <i class="icon ti-eye"></i>
                                                         </button>
@@ -146,7 +143,7 @@
                                                         @csrf @method('DELETE')
                                                         <button 
                                                             type="submit"
-                                                            class="btn btn-light text-danger"
+                                                            class="btn btn-sm btn-light text-danger"
                                                         >
                                                             <i class="icon ti-trash"></i>
                                                         </button>

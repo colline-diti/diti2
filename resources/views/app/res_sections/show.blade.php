@@ -16,19 +16,16 @@
             </div>
             <div class="table-responsive">
                 <table class="table table-hover table-bordered ">
-                        <thead class="thead-light">
-                            <tr>
+                        <thead class="thead-light">                            
                                 <tr>                                  
                                     <th class="text-left">
-                                        @lang('crud.restuarant_sections.inputs.section_name')
+                                        @lang('crud.res_sections.inputs.section_name')
                                     </th>                                    
-                                </tr>
-                            </tr>
+                                </tr>                        
                         </thead>
-                        <tbody>                                  
+                    <tbody>                                  
                         <tr>
-                            <td><span>{{ $resSection->section_name ?? '-' }}</span></td>                                                              
-                            
+                            <td>{{ $resSection->section_name ?? '-' }}</td>                   
                         </tr>    
                     </tbody>
                 </table>

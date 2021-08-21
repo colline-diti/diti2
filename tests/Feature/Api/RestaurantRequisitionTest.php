@@ -38,7 +38,7 @@ class RestaurantRequisitionTest extends TestCase
 
         $response = $this->getJson(route('api.restaurant-requisitions.index'));
 
-        $response->assertOk()->assertSee($restaurantRequisitions[0]->item_name);
+        $response->assertOk()->assertSee($restaurantRequisitions[0]->status);
     }
 
     /**
@@ -68,9 +68,7 @@ class RestaurantRequisitionTest extends TestCase
         $restaurantRequisition = RestaurantRequisition::factory()->create();
 
         $data = [
-            'item_name' => $this->faker->text(255),
-            'quantity' => $this->faker->randomNumber,
-            'dateofDelivery' => $this->faker->text(255),
+            'requisition_code' => $this->faker->randomNumber,
             'status' => $this->faker->word,
             'Particulars' => $this->faker->text(255),
         ];

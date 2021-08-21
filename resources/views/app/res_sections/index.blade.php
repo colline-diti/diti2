@@ -36,7 +36,7 @@
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('res-sections.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span>
+                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
                                  Create Section
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
@@ -76,10 +76,10 @@
                                 <thead>
                                     <tr>
                                         <th class="text-left">
-                                            @lang('crud.restuarant_sections.inputs.section_name')
+                                            @lang('crud.res_sections.inputs.section_name')
                                         </th>
                                         <th class="text-left">
-                                            @lang('crud.restuarant_sections.inputs.description')
+                                            @lang('crud.res_sections.inputs.description')
                                         </th> 
                                         <th class="text-center">
                                             @lang('crud.common.actions')

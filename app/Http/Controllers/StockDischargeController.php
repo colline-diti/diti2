@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
+use App\Models\User;
 use App\Models\StockTable;
 use App\Models\ResSection;
 use Illuminate\Http\Request;
@@ -11,9 +13,8 @@ use App\Http\Requests\StockDischargeUpdateRequest;
 
 class StockDischargeController extends Controller
 {
-  //stock levels
     public function stockLevels(){
-        return view('app.stock_discharges.stockLevels'); 
+        return view('app.stock_discharges.stockLevels');
     }
     /**
      * @param \Illuminate\Http\Request $request
@@ -44,11 +45,13 @@ class StockDischargeController extends Controller
         $this->authorize('create', StockDischarge::class);
 
         $stockTables = StockTable::pluck('item_name', 'id');
+        $units = Unit::pluck('unit_name', 'id');
         $resSections = ResSection::pluck('section_name', 'id');
+        $users = User::pluck('name', 'id');
 
         return view(
             'app.stock_discharges.create',
-            compact('stockTables', 'resSections')
+            compact('stockTables', 'units', 'resSections', 'users')
         );
     }
 
@@ -91,11 +94,19 @@ class StockDischargeController extends Controller
         $this->authorize('update', $stockDischarge);
 
         $stockTables = StockTable::pluck('item_name', 'id');
+        $units = Unit::pluck('unit_name', 'id');
         $resSections = ResSection::pluck('section_name', 'id');
+        $users = User::pluck('name', 'id');
 
         return view(
             'app.stock_discharges.edit',
-            compact('stockDischarge', 'stockTables', 'resSections')
+            compact(
+                'stockDischarge',
+                'stockTables',
+                'units',
+                'resSections',
+                'users'
+            )
         );
     }
 

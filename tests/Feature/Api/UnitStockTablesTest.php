@@ -3,15 +3,15 @@
 namespace Tests\Feature\Api;
 
 use App\Models\User;
+use App\Models\Unit;
 use App\Models\StockTable;
-use App\Models\ItemCategory;
 
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class StockTableItemCategoriesTest extends TestCase
+class UnitStockTablesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -31,47 +31,45 @@ class StockTableItemCategoriesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_stock_table_item_categories()
+    public function it_gets_unit_stock_tables()
     {
-        $stockTable = StockTable::factory()->create();
-        $itemCategories = ItemCategory::factory()
+        $unit = Unit::factory()->create();
+        $stockTables = StockTable::factory()
             ->count(2)
             ->create([
-                'stock_table_id' => $stockTable->id,
+                'unit_id' => $unit->id,
             ]);
 
         $response = $this->getJson(
-            route('api.stock-tables.item-categories.index', $stockTable)
+            route('api.units.stock-tables.index', $unit)
         );
 
-        $response->assertOk()->assertSee($itemCategories[0]->name);
+        $response->assertOk()->assertSee($stockTables[0]->item_name);
     }
 
     /**
      * @test
      */
-    public function it_stores_the_stock_table_item_categories()
+    public function it_stores_the_unit_stock_tables()
     {
-        $stockTable = StockTable::factory()->create();
-        $data = ItemCategory::factory()
+        $unit = Unit::factory()->create();
+        $data = StockTable::factory()
             ->make([
-                'stock_table_id' => $stockTable->id,
+                'unit_id' => $unit->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route('api.stock-tables.item-categories.store', $stockTable),
+            route('api.units.stock-tables.store', $unit),
             $data
         );
 
-        unset($data['stock_table_id']);
-
-        $this->assertDatabaseHas('item_categories', $data);
+        $this->assertDatabaseHas('stock_tables', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);
 
-        $itemCategory = ItemCategory::latest('id')->first();
+        $stockTable = StockTable::latest('id')->first();
 
-        $this->assertEquals($stockTable->id, $itemCategory->stock_table_id);
+        $this->assertEquals($unit->id, $stockTable->unit_id);
     }
 }

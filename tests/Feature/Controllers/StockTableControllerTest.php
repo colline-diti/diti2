@@ -5,6 +5,7 @@ namespace Tests\Feature\Controllers;
 use App\Models\User;
 use App\Models\StockTable;
 
+use App\Models\Unit;
 use App\Models\ItemCategory;
 
 use Tests\TestCase;
@@ -66,8 +67,6 @@ class StockTableControllerTest extends TestCase
 
         $response = $this->post(route('stock-tables.store'), $data);
 
-        unset($data['item_category_id']);
-
         $this->assertDatabaseHas('stock_tables', $data);
 
         $stockTable = StockTable::latest('id')->first();
@@ -113,22 +112,20 @@ class StockTableControllerTest extends TestCase
         $stockTable = StockTable::factory()->create();
 
         $itemCategory = ItemCategory::factory()->create();
+        $unit = Unit::factory()->create();
 
         $data = [
             'item_name' => $this->faker->text(255),
             'quantity' => $this->faker->randomNumber,
-            'unit' => $this->faker->text(255),
-            'buying_price' => $this->faker->randomNumber,
             'remarks' => $this->faker->sentence(15),
             'item_category_id' => $itemCategory->id,
+            'unit_id' => $unit->id,
         ];
 
         $response = $this->put(
             route('stock-tables.update', $stockTable),
             $data
         );
-
-        unset($data['item_category_id']);
 
         $data['id'] = $stockTable->id;
 

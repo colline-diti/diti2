@@ -68,6 +68,7 @@ class RestaurantRequisitionController extends Controller
     ) {
         $this->authorize('view', $restaurantRequisition);
 
+
         return view(
             'app.restaurant_requisitions.show',
             compact('restaurantRequisition')

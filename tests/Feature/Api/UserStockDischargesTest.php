@@ -10,7 +10,7 @@ use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class StockDischargeStockDischargesTest extends TestCase
+class UserStockDischargesTest extends TestCase
 {
     use RefreshDatabase, WithFaker;
 
@@ -30,46 +30,38 @@ class StockDischargeStockDischargesTest extends TestCase
     /**
      * @test
      */
-    public function it_gets_stock_discharge_stock_discharges()
+    public function it_gets_user_stock_discharges()
     {
-        $stockDischarge = StockDischarge::factory()->create();
+        $user = User::factory()->create();
         $stockDischarges = StockDischarge::factory()
             ->count(2)
             ->create([
-                'stock_discharge_id' => $stockDischarge->id,
+                'user_id' => $user->id,
             ]);
 
         $response = $this->getJson(
-            route(
-                'api.stock-discharges.stock-discharges.index',
-                $stockDischarge
-            )
+            route('api.users.stock-discharges.index', $user)
         );
 
-        $response->assertOk()->assertSee($stockDischarges[0]->description);
+        $response->assertOk()->assertSee($stockDischarges[0]->return_date);
     }
 
     /**
      * @test
      */
-    public function it_stores_the_stock_discharge_stock_discharges()
+    public function it_stores_the_user_stock_discharges()
     {
-        $stockDischarge = StockDischarge::factory()->create();
+        $user = User::factory()->create();
         $data = StockDischarge::factory()
             ->make([
-                'stock_discharge_id' => $stockDischarge->id,
+                'user_id' => $user->id,
             ])
             ->toArray();
 
         $response = $this->postJson(
-            route(
-                'api.stock-discharges.stock-discharges.store',
-                $stockDischarge
-            ),
+            route('api.users.stock-discharges.store', $user),
             $data
         );
-
-        unset($data['stock_discharge_id']);
 
         $this->assertDatabaseHas('stock_discharges', $data);
 
@@ -77,9 +69,6 @@ class StockDischargeStockDischargesTest extends TestCase
 
         $stockDischarge = StockDischarge::latest('id')->first();
 
-        $this->assertEquals(
-            $stockDischarge->id,
-            $stockDischarge->stock_discharge_id
-        );
+        $this->assertEquals($user->id, $stockDischarge->user_id);
     }
 }

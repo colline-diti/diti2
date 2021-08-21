@@ -81,13 +81,22 @@
                                             @lang('crud.stock_discharges.inputs.stock_table_id')
                                         </th>
                                         <th class="text-left">
-                                            @lang('crud.stock_discharges.inputs.res_section_id')
-                                        </th>                                      
+                                            @lang('crud.stock_discharges.inputs.unit_id')
+                                        </th>
                                         <th class="text-left">
-                                            @lang('crud.stock_discharges.inputs.description')
+                                            @lang('crud.stock_discharges.inputs.res_section_id')
+                                        </th>   
+                                        <th class="text-left">
+                                            @lang('crud.stock_discharges.inputs.return_date')
+                                        </th>                                    
+                                        <th class="text-left">
+                                            @lang('crud.stock_discharges.inputs.remarks')
                                         </th>
                                         <th class="text-left">
                                             @lang('crud.stock_discharges.inputs.issued_by')
+                                        </th>
+                                        <th class="text-left">
+                                            @lang('crud.stock_discharges.inputs.user_id')
                                         </th>
                                         <th class="text-center">
                                             @lang('crud.common.actions')
@@ -106,12 +115,19 @@
                                             ?? '-' }}
                                         </td>
                                         <td>
+                                            {{ optional($stockDischarge->unit)->unit_name ??
+                                                '-' }}
+                                        </td>                                      
+                                        <td>
                                             {{
                                             optional($stockDischarge->resSection)->section_name
                                             ?? '-' }}
-                                        </td>                                     
-                                        <td>{{ $stockDischarge->description ?? '-' }}</td>
+                                        </td>  
+                                        <td>{{ $stockDischarge->return_date ?? '-' }}</td>                                   
+                                        <td>{{ $stockDischarge->remarks ?? '-' }}</td>
                                         <td>{{ $stockDischarge->issued_by ?? '-' }}</td>
+                                        <td>{{ optional($stockDischarge->user)->name ?? '-'
+                                        }}</td>
                                         <td class="text-center" style="width: 134px;">
                                             <div
                                                 role="group"

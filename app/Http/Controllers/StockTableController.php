@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Unit;
 use App\Models\StockTable;
-use App\Models\ItemCategory;
 use Illuminate\Http\Request;
+use App\Models\ItemCategory;
 use App\Http\Requests\StockTableStoreRequest;
 use App\Http\Requests\StockTableUpdateRequest;
 
@@ -34,11 +35,14 @@ class StockTableController extends Controller
     public function create(Request $request)
     {
         $this->authorize('create', StockTable::class);
-        $itemCategories = ItemCategory::pluck('name', 'id');
 
-        return view('app.stock_tables.create', 
-                compact('itemCategories')
-            );
+        $itemCategories = ItemCategory::pluck('name', 'id');
+        $units = Unit::pluck('unit_name', 'id');
+
+        return view(
+            'app.stock_tables.create',
+            compact('itemCategories', 'units')
+        );
     }
 
     /**
@@ -78,9 +82,14 @@ class StockTableController extends Controller
     public function edit(Request $request, StockTable $stockTable)
     {
         $this->authorize('update', $stockTable);
-        $itemCategories = ItemCategory::pluck('name', 'id');
 
-        return view('app.stock_tables.edit', compact('stockTable', 'itemCategories'));
+        $itemCategories = ItemCategory::pluck('name', 'id');
+        $units = Unit::pluck('unit_name', 'id');
+
+        return view(
+            'app.stock_tables.edit',
+            compact('stockTable', 'itemCategories', 'units')
+        );
     }
 
     /**

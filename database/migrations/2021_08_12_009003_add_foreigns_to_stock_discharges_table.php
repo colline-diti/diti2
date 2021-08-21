@@ -22,9 +22,23 @@ class AddForeignsToStockDischargesTable extends Migration
                 ->onDelete('CASCADE');
 
             $table
+                ->foreign('unit_id')
+                ->references('id')
+                ->on('units')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
+            $table
                 ->foreign('res_section_id')
                 ->references('id')
                 ->on('res_sections')
+                ->onUpdate('CASCADE')
+                ->onDelete('CASCADE');
+
+            $table
+                ->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
         });
@@ -39,7 +53,9 @@ class AddForeignsToStockDischargesTable extends Migration
     {
         Schema::table('stock_discharges', function (Blueprint $table) {
             $table->dropForeign(['stock_table_id']);
+            $table->dropForeign(['unit_id']);
             $table->dropForeign(['res_section_id']);
+            $table->dropForeign(['user_id']);
         });
     }
 }
