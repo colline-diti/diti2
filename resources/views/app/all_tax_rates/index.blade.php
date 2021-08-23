@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-lg-8 p-r-0 title-margin-right">
+        <div class="col-lg-8 p-r-0 title-margin-right"> 
             <div class="page-header">
                 <div class="page-title">
                     <h1>Tax Rates</span></h1>

@@ -35,7 +35,7 @@
                                 Requisition Items List:
                              </a>
                              <!--Put Register link-->
-                             <a class="btn btn-sm btn-info" href="">
+                            <a class="btn btn-sm btn-info" href="{{ route('restaurant-requisitions.create') }}">
                                  <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
                                  Create Requisition Item
                              </a>
@@ -81,6 +81,9 @@
                                         <th class="text-left">
                                             @lang('crud.restaurant_requisitions.inputs.Particulars')
                                         </th>
+                                        <th class="text-left">
+                                            @lang('crud.restaurant_requisitions.inputs.delivery_status')
+                                        </th>
                                         <th class="text-center">
                                             @lang('crud.common.actions')
                                         </th>
@@ -90,17 +93,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse($restaurantRequisitions as
-                                    $restaurantRequisition)
+                                    @forelse($restaurantRequisitions as $restaurantRequisition)
                                     <tr>
                                         <td>
-                                            {{ $restaurantRequisition->requisition_code ??
-                                            '-' }}
+                                            {{ $restaurantRequisition->requisition_code ?? '-' }}
                                         </td>
                                         
                                         <td>
                                             {{ $restaurantRequisition->Particulars ?? '-' }}
                                         </td>
+                                        <td><span class="badge badge-warning">{{ $restaurantRequisition->delivery_status ?? '-' }}</span></td>
                                         <td class="text-center" style="width: 134px;">
                                             <div
                                                 role="group"
@@ -129,8 +131,7 @@
                                                         <i class="icon ti-eye"></i>
                                                     </button>
                                                 </a>
-                                                @endcan @can('delete',
-                                                $restaurantRequisition)
+                                                @endcan @can('delete', $restaurantRequisition)
                                                 <form
                                                     action="{{ route('restaurant-requisitions.destroy', $restaurantRequisition) }}"
                                                     method="POST"
@@ -146,7 +147,7 @@
                                                 </form>
                                                 @endcan
                                             </div>
-                                        </td>
+                                        </td>                                       
                                         <td><span class="badge badge-danger">{{ $restaurantRequisition->status ?? '-' }}</span></td>
                                     </tr>
                                     @empty

@@ -209,6 +209,7 @@ return [
         'inputs' => [
             'requisition_code' => 'Requisition Code',
             'status' => 'Status',
+            'delivery_status' => 'Delivery Status',
             'Particulars' => 'Description',
         ],
     ],

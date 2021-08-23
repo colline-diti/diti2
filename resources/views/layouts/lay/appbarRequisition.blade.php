@@ -68,11 +68,9 @@
     </style>
 </head>
 
-<body>
-        @if (Request::is('admin*'))
+<body> 
             @include('partials.sidebar')
             @include('partials.navbar')   
-        @endif
     <div class="content-wrap">
         <div class="main">
             @include('partials.alerts')

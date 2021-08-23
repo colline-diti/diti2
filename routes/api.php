@@ -3,12 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\UnitController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\RoleController;
 use App\Http\Controllers\Api\RecieptController;
 use App\Http\Controllers\Api\ClientsController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\InvoicesController;
 use App\Http\Controllers\Api\TaxRatesController;
 use App\Http\Controllers\Api\PettyCashController;
 use App\Http\Controllers\Api\ResProductController;
@@ -17,7 +18,6 @@ use App\Http\Controllers\Api\StockTableController;
 use App\Http\Controllers\Api\ResSectionController;
 use App\Http\Controllers\Api\PermissionController;
 use App\Http\Controllers\Api\ResCategoryController;
-use App\Http\Controllers\Api\ClientsSalesController;
 use App\Http\Controllers\Api\PaymentTypesController;
 use App\Http\Controllers\Api\ItemCategoryController;
 use App\Http\Controllers\Api\ResSalesTableController;
@@ -26,11 +26,13 @@ use App\Http\Controllers\Api\StockDischargeController;
 use App\Http\Controllers\Api\RequisitionItemController;
 use App\Http\Controllers\Api\UnitStockTablesController;
 use App\Http\Controllers\Api\Expeses_ResturantController;
-use App\Http\Controllers\Api\PaymentTypesSalesController;
 use App\Http\Controllers\Api\ResProductRecieptsController;
+use App\Http\Controllers\Api\ClientsAllInvoicesController;
+use App\Http\Controllers\Api\ProductParticularsController;
 use App\Http\Controllers\Api\UserStockDischargesController;
 use App\Http\Controllers\Api\RequisitionDeliveryController;
 use App\Http\Controllers\Api\UnitStockDischargesController;
+use App\Http\Controllers\Api\TaxRatesAllInvoicesController;
 use App\Http\Controllers\Api\RestaurantRequisitionController;
 use App\Http\Controllers\Api\ResCategoryResProductsController;
 use App\Http\Controllers\Api\ItemCategoryStockTablesController;
@@ -38,6 +40,7 @@ use App\Http\Controllers\Api\ResProductResSalesTablesController;
 use App\Http\Controllers\Api\StockTableStockDischargesController;
 use App\Http\Controllers\Api\ResSectionStockDischargesController;
 use App\Http\Controllers\Api\AssetTypesAllAssetsAccountsController;
+use App\Http\Controllers\Api\ProductAllProductParticularsController;
 use App\Http\Controllers\Api\RequisitionItemRequisitionDeliveriesController;
 use App\Http\Controllers\Api\RestaurantRequisitionRequisitionItemsController;
 
@@ -116,8 +119,6 @@ Route::name('api.')
 
         Route::apiResource('reciepts', RecieptController::class);
 
-        Route::apiResource('all-tax-rates', TaxRatesController::class);
-
         Route::apiResource('petty-cashes', PettyCashController::class);
 
         Route::apiResource(
@@ -125,31 +126,7 @@ Route::name('api.')
             Expeses_ResturantController::class
         );
 
-        Route::apiResource('sales', SaleController::class);
-
-        Route::apiResource('all-clients', ClientsController::class);
-
-        // Clients Sales
-        Route::get('/all-clients/{clients}/sales', [
-            ClientsSalesController::class,
-            'index',
-        ])->name('all-clients.sales.index');
-        Route::post('/all-clients/{clients}/sales', [
-            ClientsSalesController::class,
-            'store',
-        ])->name('all-clients.sales.store');
-
         Route::apiResource('all-payment-types', PaymentTypesController::class);
-
-        // PaymentTypes Sales
-        Route::get('/all-payment-types/{paymentTypes}/sales', [
-            PaymentTypesSalesController::class,
-            'index',
-        ])->name('all-payment-types.sales.index');
-        Route::post('/all-payment-types/{paymentTypes}/sales', [
-            PaymentTypesSalesController::class,
-            'store',
-        ])->name('all-payment-types.sales.store');
 
         Route::apiResource(
             'all-assets-accounts',
@@ -182,21 +159,6 @@ Route::name('api.')
             '/requisition-items/{requisitionItem}/requisition-deliveries',
             [RequisitionItemRequisitionDeliveriesController::class, 'store']
         )->name('requisition-items.requisition-deliveries.store');
-
-        Route::apiResource(
-            'restaurant-requisitions',
-            RestaurantRequisitionController::class
-        );
-
-        // RestaurantRequisition Requisition Items
-        Route::get(
-            '/restaurant-requisitions/{restaurantRequisition}/requisition-items',
-            [RestaurantRequisitionRequisitionItemsController::class, 'index']
-        )->name('restaurant-requisitions.requisition-items.index');
-        Route::post(
-            '/restaurant-requisitions/{restaurantRequisition}/requisition-items',
-            [RestaurantRequisitionRequisitionItemsController::class, 'store']
-        )->name('restaurant-requisitions.requisition-items.store');
 
         Route::apiResource('stock-discharges', StockDischargeController::class);
 
@@ -257,4 +219,57 @@ Route::name('api.')
             ResSectionStockDischargesController::class,
             'store',
         ])->name('res-sections.stock-discharges.store');
+
+        Route::apiResource(
+            'restaurant-requisitions',
+            RestaurantRequisitionController::class
+        );
+
+        // RestaurantRequisition Requisition Items
+        Route::get(
+            '/restaurant-requisitions/{restaurantRequisition}/requisition-items',
+            [RestaurantRequisitionRequisitionItemsController::class, 'index']
+        )->name('restaurant-requisitions.requisition-items.index');
+        Route::post(
+            '/restaurant-requisitions/{restaurantRequisition}/requisition-items',
+            [RestaurantRequisitionRequisitionItemsController::class, 'store']
+        )->name('restaurant-requisitions.requisition-items.store');
+
+        Route::apiResource('all-clients', ClientsController::class);
+
+        // Clients All Invoices
+        Route::get('/all-clients/{clients}/all-invoices', [
+            ClientsAllInvoicesController::class,
+            'index',
+        ])->name('all-clients.all-invoices.index');
+        Route::post('/all-clients/{clients}/all-invoices', [
+            ClientsAllInvoicesController::class,
+            'store',
+        ])->name('all-clients.all-invoices.store');
+
+        Route::apiResource('products', ProductController::class);
+
+        // Product All Product Particulars
+        Route::get('/products/{product}/all-product-particulars', [
+            ProductAllProductParticularsController::class,
+            'index',
+        ])->name('products.all-product-particulars.index');
+        Route::post('/products/{product}/all-product-particulars', [
+            ProductAllProductParticularsController::class,
+            'store',
+        ])->name('products.all-product-particulars.store');
+
+        Route::apiResource('all-invoices', InvoicesController::class);
+
+        Route::apiResource('all-tax-rates', TaxRatesController::class);
+
+        // TaxRates All Invoices
+        Route::get('/all-tax-rates/{taxRates}/all-invoices', [
+            TaxRatesAllInvoicesController::class,
+            'index',
+        ])->name('all-tax-rates.all-invoices.index');
+        Route::post('/all-tax-rates/{taxRates}/all-invoices', [
+            TaxRatesAllInvoicesController::class,
+            'store',
+        ])->name('all-tax-rates.all-invoices.store');
     });

@@ -12,10 +12,11 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.select
+        <x-inputs.select 
             name="restaurant_requisition_id"
             label="Restaurant Requisition"
             required
+            readonly
         >
             @php $selected = old('restaurant_requisition_id', ($editing ? $requisitionItem->restaurant_requisition_id : '')) @endphp
             <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Restaurant Requisition</option>

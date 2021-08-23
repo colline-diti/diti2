@@ -11,7 +11,12 @@ class RestaurantRequisition extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['requisition_code', 'status', 'Particulars'];
+    protected $fillable = [
+        'requisition_code',
+        'status',
+        'Particulars',
+        'delivery_status',
+    ];
 
     protected $searchableFields = ['*'];
 

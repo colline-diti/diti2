@@ -15,8 +15,8 @@ class Clients extends Model
 
     protected $searchableFields = ['*'];
 
-    public function sales()
+    public function allInvoices()
     {
-        return $this->hasMany(Sale::class);
+        return $this->hasMany(Invoices::class);
     }
 }

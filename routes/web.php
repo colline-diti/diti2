@@ -17,6 +17,9 @@ use App\Http\Controllers\TaxRatesController;
 use App\Http\Controllers\RestaurantRequisitionController;
 use App\Http\Controllers\RequisitionItemController;
 use App\Http\Controllers\RequisitionDeliveryController;
+use App\Http\Controllers\ClientsController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\InvoicesController;
 
 //For Inventory Management
 use App\Http\Controllers\UnitController;
@@ -24,6 +27,7 @@ use App\Http\Controllers\StockTableController;
 use App\Http\Controllers\ItemCategoryController;
 use App\Http\Controllers\ResSectionController;
 use App\Http\Controllers\StockDischargeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,4 +81,8 @@ Route::prefix('/')
         Route::resource('requisition-items', RequisitionItemController::class);
         Route::resource('requisition-deliveries', RequisitionDeliveryController::class);
         Route::resource('units', UnitController::class);
+        Route::resource('all-clients', ClientsController::class);
+
+        Route::resource('products', ProductController::class);
+        Route::resource('all-invoices', InvoicesController::class);
     });

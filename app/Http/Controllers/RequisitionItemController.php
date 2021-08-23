@@ -8,6 +8,7 @@ use App\Models\RestaurantRequisition;
 use App\Http\Requests\RequisitionItemStoreRequest;
 use App\Http\Requests\RequisitionItemUpdateRequest;
 
+
 class RequisitionItemController extends Controller
 {
     /**
@@ -59,7 +60,7 @@ class RequisitionItemController extends Controller
         $requisitionItem = RequisitionItem::create($validated);
 
         return redirect()
-            ->route('requisition-items.edit', $requisitionItem)
+            ->route('requisition-items.index', $requisitionItem)
             ->withSuccess(__('crud.common.created'));
     }
 

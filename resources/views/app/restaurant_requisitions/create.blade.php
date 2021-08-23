@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Create Category</h1>
+                    <h1>Create Requisition</span></h1>
                 </div>
             </div>
         </div>
@@ -15,8 +15,8 @@
             <div class="page-header">
                 <div class="page-title">
                     <ol class="breadcrumb">
-                        <a class="breadcrumb-item" href="{{ URL::route('cafeDashboard') }}"> Dashboard</a>
-                    <a class="breadcrumb-item" href="{{ URL::route('restaurant-requisitions.create') }}"> Requisition Order</a>
+                        <a class="breadcrumb-item" href="{{ URL::route('home') }}"> Dashboard</a>
+                    <a class="breadcrumb-item" href="{{ URL::route('restaurant-requisitions.create') }}"> Restaurant Requisitions</a>
                     </ol>
                 </div>
             </div>
@@ -33,11 +33,11 @@
             
                              <!-- Create new Role-->
                              <a><span class="glyphicon glyphicon-edit"></span>
-                                Add Requisition Order:
+                                Add Product:
                              </a>
                              <a class="btn btn-sm btn-info" href="#" >
                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                Create Requisition Order
+                                Create Product
                             </a>
                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                                 Back </span>
@@ -51,20 +51,19 @@
                                 <div class="card-body">
                                     <div  style="margin: auto;"  class="col-lg-12">
                                         <x-form
-                                            method="POST"
-                                            action="{{ route('restaurant-requisitions.store') }}"
-                                            class="mt-4"
-                                        >
-                                            @include('app.restaurant_requisitions.form-inputs')
-                            
-                                            <div class="mt-4">
-                
-                                                <button type="submit" class="btn btn-sm btn-primary float-right">
-                                                    <i class="icon ti-save"></i>
-                                                    @lang('crud.common.create')
-                                                </button>
-                                            </div>
-                                        </x-form>
+                                        method="POST"
+                                        action="{{ route('restaurant-requisitions.store') }}"
+                                        class="mt-4"
+                                    >
+                                        @include('app.restaurant_requisitions.form-inputs')
+                        
+                                        <div class="mt-4">                                            
+                                            <button type="submit" class="btn btn-sm btn-primary float-right">
+                                                <i class="icon ti-save"></i>
+                                                @lang('crud.common.create')
+                                            </button>
+                                        </div>
+                                    </x-form>
                                     </div>                              
                                 </div>
                             </div>

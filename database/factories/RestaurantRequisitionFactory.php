@@ -25,6 +25,7 @@ class RestaurantRequisitionFactory extends Factory
         return [
             'requisition_code' => $this->faker->randomNumber,
             'status' => $this->faker->word,
+            'delivery_status' => $this->faker->word,
             'Particulars' => $this->faker->text(255),
         ];
     }

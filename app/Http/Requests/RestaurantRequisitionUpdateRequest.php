@@ -27,6 +27,7 @@ class RestaurantRequisitionUpdateRequest extends FormRequest
             'requisition_code' => ['required', 'max:255'],
             'status' => ['required', 'max:255', 'string'],
             'Particulars' => ['required', 'max:255', 'string'],
+            'delivery_status' => ['required', 'max:255', 'string'],
         ];
     }
 }

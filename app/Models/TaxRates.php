@@ -16,4 +16,9 @@ class TaxRates extends Model
     protected $searchableFields = ['*'];
 
     protected $table = 'tax_rates';
+
+    public function allInvoices()
+    {
+        return $this->hasMany(Invoices::class);
+    }
 }

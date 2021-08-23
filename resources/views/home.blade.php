@@ -29,7 +29,7 @@
                                     <div class="stat-icon dib"><i class="ti-layout color-success border-success"></i>
                                     </div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text"> Accounts Management</div>
+                                        <div class="stat-text"> General Accounts</div>
                                         <div class="stat-digit">ACCOUNTS</div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                 <div class="stat-widget-one" data-title="Access the Procurement Dashboard">
                                     <div class="stat-icon dib"><i class="ti-truck color-success border-success"></i></div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">DIT Procurement</div>
+                                        <div class="stat-text">General Procurement</div>
                                         <div class="stat-digit">PURCHASE</div>
                                     </div>
                                 </div>
@@ -72,8 +72,8 @@
                                     <div class="stat-icon dib"><i class="ti-user color-success border-success"></i>
                                     </div>
                                     <div class="stat-content dib">
-                                        <div class="stat-text">Access Control</div>
-                                        <div class="stat-digit">USERS</div>
+                                        <div class="stat-text">System Configurations</div>
+                                        <div class="stat-digit">SETTINGS</div>
                                     </div>
                                 </div>
                             </div>

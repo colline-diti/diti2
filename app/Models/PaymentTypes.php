@@ -16,9 +16,4 @@ class PaymentTypes extends Model
     protected $searchableFields = ['*'];
 
     protected $table = 'payment_types';
-
-    public function sales()
-    {
-        return $this->hasMany(Sale::class);
-    }
 }
