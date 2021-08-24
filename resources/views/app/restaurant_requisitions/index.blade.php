@@ -16,7 +16,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <a class="breadcrumb-item" href="{{ route('cafeDashboard') }}"> Dashboard</a>
-                        <a class="breadcrumb-item" href="{{ route('restaurant-requisitions.index') }}">Requisition Items</a>
+                        <a class="breadcrumb-item" href="{{ route('restaurant-requisitions.index') }}"> Requisition Orders</a>
                     </ol>
                 </div>
             </div>
@@ -32,12 +32,12 @@
                         <h4 class="card-title">
                               <!-- Create new User-->
                               <a><span class="glyphicon glyphicon-edit"></span>
-                                Requisition Items List:
+                                Requisition Orders List:
                              </a>
                              <!--Put Register link-->
                             <a class="btn btn-sm btn-info" href="{{ route('restaurant-requisitions.create') }}">
                                  <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                 Create Requisition Item
+                                 Create Requisition Order
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                               Back </span>
