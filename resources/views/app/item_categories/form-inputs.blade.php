@@ -1,24 +1,21 @@
 @php $editing = isset($itemCategory) @endphp
 
-<div class="row">
-    <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.text
-            name="name"
-            label="Name"
-            value="{{ old('name', ($editing ? $itemCategory->name : '')) }}"
-            maxlength="255"
-            required
-        ></x-inputs.text>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.textarea
-            name="description"
-            label="Description"
-            maxlength="255"
-            required
-            >{{ old('description', ($editing ? $itemCategory->description : ''))
-            }}</x-inputs.textarea
-        >
-    </x-inputs.group>
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">Category Name</label>
+    <input type="text" 
+     name="name" 
+     class="form-control-label row col-sm-8" 
+     value="{{ old('name', ($editing ? $itemCategory->name : '')) }}"
+     required
+     placeholder="Category Name">
+     
 </div>
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">Description</label>
+    <textarea type="text"
+    name="description" 
+    class="form-control-label row col-sm-8"     
+    required
+    placeholder="Description"
+    >{{ old('description', ($editing ? $itemCategory->description : ''))}}</textarea>
+</div> 

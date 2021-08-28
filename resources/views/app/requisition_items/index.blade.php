@@ -32,12 +32,12 @@
                         <h4 class="card-title">
                               <!-- Create new User-->
                               <a><span class="glyphicon glyphicon-edit"></span>
-                                Requisition Order List:
+                                Requisition Items List:
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('requisition-items.create') }}">
                                  <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                 Create Requisition Order
+                                 Create Requisition Item
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                               Back </span>
@@ -91,7 +91,7 @@
                                         <td>{{ $requisitionItem->name ?? '-' }}</td>
                                         <td>
                                             {{
-                                            optional($requisitionItem->restaurantRequisition)->status
+                                            optional($requisitionItem->restaurantRequisition)->requisition_code
                                             ?? '-' }}
                                         </td>
                                         <td class="text-center" style="width: 134px;">

@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1> @lang('crud.stock_tables.index_title')</span></h1>
+                    <h1>Stocks</span></h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <a class="breadcrumb-item" href="{{ route('cafeDashboard') }}"> Dashboard</a>
-                        <a class="breadcrumb-item" href="{{ route('stock-tables.index') }}"> Items</a>
+                        <a class="breadcrumb-item" href="{{ route('stock-tables.index') }}"> Stock Management</a>
                     </ol>
                 </div>
             </div>
@@ -32,13 +32,17 @@
                         <h4 class="card-title">
                               <!-- Create new User-->
                               <a><span class="glyphicon glyphicon-edit"></span>
-                                Stock Item List:
+                                Stock List:
                              </a>
                              <!--Put Register link-->
-                             <a class="btn btn-sm btn-info" href="{{ route('stock-tables.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                 Create Stock Item
-                             </a>
+                             <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#addStock" href="{{ route('stock-tables.create') }}">
+                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
+                                 Add stock
+                             </button>
+                             <button class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#dischargeStock" href="{{ route('stock-tables.create') }}">
+                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
+                                 Stock Discharge
+                             </button>                           
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                               Back </span>
                              </a>
@@ -65,7 +69,7 @@
                                             >
                                                 <i class="icon ti-search"></i>
                                             </button>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                 </form>
                             </div>
@@ -82,10 +86,8 @@
                                         </th>
                                         <th class="text-left">
                                             @lang('crud.stock_tables.inputs.item_category_id')
-                                        </th>                                       
-                                        <th class="text-left">
-                                            @lang('crud.stock_tables.inputs.unit_id')
-                                        </th>                                     
+                                        </th>                                   
+                                        
                                         <th class="text-left">
                                             @lang('crud.stock_tables.inputs.remarks')
                                         </th>
@@ -94,72 +96,72 @@
                                         </th>
                                     </tr>
                                 </thead>
-                                    <tbody>
-                                        @forelse($stockTables as $stockTable)
-                                        <tr>
-                                            <td>{{ $stockTable->item_name ?? '-' }}</td>
-                                            <td>{{ $stockTable->quantity ?? '-' }}</td>                                            
-                                            <td>{{
-                                                    optional($stockTable->itemCategory)->name
-                                                    ?? '-' }}
-                                            </td> 
-                                            <td>{{ optional($stockTable->unit)->unit_name ?? '-'
-                                            }}</td>                                                                                      
-                                            <td>{{ $stockTable->remarks ?? '-' }}</td>
-                                            <td class="text-center" style="width: 134px;">
-                                                <div
-                                                    role="group"
-                                                    aria-label="Row Actions"
-                                                    class="btn-group"
+                                <tbody>
+                                    @forelse($stockTables as $stockTable)
+                                    <tr>
+                                        <td>{{ $stockTable->item_name ?? '-' }}</td>
+                                        <td>{{ $stockTable->quantity ?? '-' }}
+                                            {{ optional($stockTable->unit)->unit_name ?? '-' }}
+                                        </td>                                            
+                                        <td>{{
+                                                optional($stockTable->itemCategory)->name
+                                                ?? '-' }}
+                                        </td>                                                                                                                              
+                                        <td>{{ $stockTable->remarks ?? '-' }}</td>
+                                        <td class="text-center" style="width: 134px;">
+                                            <div
+                                                role="group"
+                                                aria-label="Row Actions"
+                                                class="btn-group"
+                                            >
+                                                @can('update', $stockTable)
+                                                <a
+                                                    href="{{ route('stock-tables.edit', $stockTable) }}"
                                                 >
-                                                    @can('update', $stockTable)
-                                                    <a
-                                                        href="{{ route('stock-tables.edit', $stockTable) }}"
+                                                    <button
+                                                        type="button"
+                                                        class="btn btn-sm btn-light"
                                                     >
-                                                        <button
-                                                            type="button"
-                                                            class="btn btn-sm btn-light"
-                                                        >
-                                                            <i class="icon ti-pencil-alt"></i>
-                                                        </button>
-                                                    </a>
-                                                    @endcan @can('view', $stockTable)
-                                                    <a
-                                                        href="{{ route('stock-tables.show', $stockTable) }}"
+                                                        <i class="icon ti-pencil-alt"></i>
+                                                    </button>
+                                                </a>
+                                                @endcan @can('view', $stockTable)
+                                                <a
+                                                    href="{{ route('stock-tables.show', $stockTable) }}"
+                                                >
+                                                    <button 
+                                                        type="button"
+                                                        class="btn btn-sm btn-light text-success"
                                                     >
-                                                        <button 
-                                                            type="button"
-                                                            class="btn btn-sm btn-light text-success"
-                                                        >
-                                                            <i class="icon ti-eye"></i>
-                                                        </button>
-                                                    </a>
-                                                    @endcan @can('delete', $stockTable)
-                                                    <form
-                                                        action="{{ route('stock-tables.destroy', $stockTable) }}"
-                                                        method="POST"
-                                                        onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
+                                                        <i class="icon ti-eye"></i>
+                                                    </button>
+                                                </a>
+                                                @endcan @can('delete', $stockTable)
+                                                <form
+                                                    action="{{ route('stock-tables.destroy', $stockTable) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
+                                                >
+                                                    @csrf @method('DELETE')
+                                                    <button 
+                                                        type="submit"
+                                                        class="btn btn-sm btn-light text-danger"
                                                     >
-                                                        @csrf @method('DELETE')
-                                                        <button 
-                                                            type="submit"
-                                                            class="btn btn-sm btn-light text-danger"
-                                                        >
-                                                            <i class="icon ti-trash"></i>
-                                                        </button>
-                                                    </form>
-                                                    @endcan
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        @empty
-                                        <tr>
-                                            <td colspan="7">
-                                                @lang('crud.common.no_items_found')
-                                            </td>
-                                        </tr>
-                                        @endforelse
-                                    </tbody>
+                                                        <i class="icon ti-trash"></i>
+                                                    </button>
+                                                </form>
+                                                @endcan
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="7">
+                                            @lang('crud.common.no_items_found')
+                                        </td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="7">{!! $stockTables->render() !!}</td>
@@ -173,7 +175,10 @@
                 </div>
             </div>    
         </div> 
-  
+        
+      
+        @include('partials.modals.addStock')
+        @include('partials.modals.dischargeStock')
         @include('partials.footer') 
     </section>
   </div>

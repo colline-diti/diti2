@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>{{  request()->route()->uri }}</span></h1>
+                    <h1>Roles</span></h1>
                 </div>
             </div>
         </div>
@@ -36,7 +36,7 @@
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('roles.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span>
+                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
                                  Create Roles
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>

@@ -83,12 +83,12 @@
                                         </th>
                                         <th class="text-left">
                                             @lang('crud.restaurant_requisitions.inputs.delivery_status')
+                                        </th>                                        
+                                        <th class="text-left">
+                                            @lang('crud.restaurant_requisitions.inputs.status')
                                         </th>
                                         <th class="text-center">
                                             @lang('crud.common.actions')
-                                        </th>
-                                        <th class="text-right">
-                                            @lang('crud.restaurant_requisitions.inputs.status')
                                         </th>
                                     </tr>
                                 </thead>
@@ -103,6 +103,7 @@
                                             {{ $restaurantRequisition->Particulars ?? '-' }}
                                         </td>
                                         <td><span class="badge badge-warning">{{ $restaurantRequisition->delivery_status ?? '-' }}</span></td>
+                                        <td><span class="badge badge-danger">{{ $restaurantRequisition->status ?? '-' }}</span></td>
                                         <td class="text-center" style="width: 134px;">
                                             <div
                                                 role="group"
@@ -147,8 +148,8 @@
                                                 </form>
                                                 @endcan
                                             </div>
-                                        </td>                                       
-                                        <td><span class="badge badge-danger">{{ $restaurantRequisition->status ?? '-' }}</span></td>
+                                        </td>                                   
+                                        
                                     </tr>
                                     @empty
                                     <tr>

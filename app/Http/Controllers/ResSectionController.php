@@ -94,7 +94,7 @@ class ResSectionController extends Controller
         $resSection->update($validated);
 
         return redirect()
-            ->route('res-sections.edit', $resSection)
+            ->route('res-sections.index', $resSection)
             ->withSuccess(__('crud.common.saved'));
     }
 

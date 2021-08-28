@@ -36,7 +36,7 @@
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('users.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span>
+                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
                                  Create User
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
@@ -102,18 +102,20 @@
                                                                 type="button"
                                                                 class="btn btn-sm btn-light"
                                                             >
-                                                                <i class="icon ti-pencil-alt"></i>
+                                                                <i class="icon ti-pencil-alt"></i> Roles
                                                             </button>
                                                         </a>
+                                                        &nbsp;&nbsp;
                                                         @endcan @can('view', $user)
                                                         <a href="{{ route('users.show', $user) }}">
                                                             <button
                                                                 type="button"
                                                                 class="btn btn-sm btn-light text-success"
                                                             >
-                                                                <i class="icon ti-eye"></i>
+                                                                <i class="icon ti-eye"></i> View
                                                             </button>
                                                         </a>
+                                                        &nbsp;&nbsp;
                                                         @endcan @can('delete', $user)
                                                         <form
                                                             action="{{ route('users.destroy', $user) }}"
@@ -125,7 +127,7 @@
                                                                 type="submit"
                                                                 class="btn btn-sm btn-light text-danger"
                                                             >
-                                                                <i class="icon ti-trash"></i>
+                                                                <i class="icon ti-trash"></i> Delete
                                                             </button>
                                                         </form>
                                                         @endcan

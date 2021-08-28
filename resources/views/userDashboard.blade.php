@@ -30,7 +30,7 @@
                 <div class="card border-success">
                     <div class="row">
                         <div class="col-lg-4" >
-                            <a href="">
+                            <a href="{{ route('users.index') }}">
                                 <div class="card border-success" data-title="Access the Restuarent Dashboard">
                                     <div class="stat-widget-one">
                                         <div class="stat-icon dib"><i class="ti-user color-success border-sucess"></i>

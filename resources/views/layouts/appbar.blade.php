@@ -19,8 +19,7 @@
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
     <!-- Styles -->
     @livewireStyles
-    <script src="{{ asset('assets/js/lib/alpine.min.js') }}
-    " defer></script>
+    <script src="{{ asset('assets/js/lib/alpine.min.js') }} "></script>
     
     <link href="{{ asset('assets/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">

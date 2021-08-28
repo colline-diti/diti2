@@ -8,7 +8,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Item Category</span></h1>
+                    <h1>@lang('crud.item_categories.name')</span></h1>
                 </div>
             </div>
         </div>
@@ -34,11 +34,11 @@
                         <h4 class="card-title">
                             <!-- edit thisItem Category (uses the edit method found at GET /user/{id}/edit -->
                             <a><span class="glyphicon glyphicon-edit"></span>
-                               Item Category Details:
+                                @lang('crud.item_categories.show_title'):
                              </a>
                              <a class="btn btn-sm btn-info" href="{{ route('item-categories.edit', $itemCategory) }}">
                                  <span class="glyphicon glyphicon-edit"></span><i class="ti-pencil-alt"></i>
-                                 Edit Item Category
+                                 @lang('crud.item_categories.edit_title')
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                                 Back </span>

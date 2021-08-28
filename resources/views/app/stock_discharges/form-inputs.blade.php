@@ -12,9 +12,9 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.select name="stock_table_id" label="Stock Table" required>
+        <x-inputs.select name="stock_table_id" label="Item" required>
             @php $selected = old('stock_table_id', ($editing ? $stockDischarge->stock_table_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Stock Table</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Item</option>
             @foreach($stockTables as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach
@@ -32,9 +32,9 @@
     </x-inputs.group>
 
     <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.select name="res_section_id" label="Res Section" required>
+        <x-inputs.select name="res_section_id" label="Restaurant Section" required>
             @php $selected = old('res_section_id', ($editing ? $stockDischarge->res_section_id : '')) @endphp
-            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Res Section</option>
+            <option disabled {{ empty($selected) ? 'selected' : '' }}>Please select the Section</option>
             @foreach($resSections as $value => $label)
             <option value="{{ $value }}" {{ $selected == $value ? 'selected' : '' }} >{{ $label }}</option>
             @endforeach

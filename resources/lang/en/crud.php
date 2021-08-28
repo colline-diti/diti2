@@ -44,7 +44,7 @@ return [
         'inputs' => [
             'item_name' => 'Item Name',
             'quantity' => 'Quantity In',
-            'unit_id' => 'Unit',
+            'unit_id' => '',
             'item_category_id' => 'Item Category',           
             'remarks' => 'Remarks',
         ],
@@ -60,7 +60,7 @@ return [
         'inputs' => [
             'product_name' => 'Product Name',
             'price' => 'Price',
-            'res_product_id' => 'Res Product',
+            'res_product_id' => 'Product',
         ],
     ],
 
@@ -79,27 +79,27 @@ return [
     ],
 
     'res_sections' => [
-        'name' => 'Restuarant Sections',
-        'index_title' => 'ResSections List',
-        'new_title' => 'New Res section',
-        'create_title' => 'Create ResSection',
-        'edit_title' => 'Edit ResSection',
-        'show_title' => 'Show ResSection',
+        'name' => 'Departments',
+        'index_title' => 'Departments List',
+        'new_title' => 'New Department',
+        'create_title' => 'Create Department',
+        'edit_title' => 'Edit Department',
+        'show_title' => 'Show Department',
         'inputs' => [
-            'section_name' => 'Section Name',
+            'section_name' => 'Department Name',
             'description' => 'Description',
         ],
     ],
 
     'units' => [
-        'name' => 'Item Unit',
-        'index_title' => 'Item Unit List',
-        'new_title' => 'New Item Units',
-        'create_title' => 'Create Item Unit',
-        'edit_title' => 'Edit Item Unit',
-        'show_title' => 'Show Item Unit',
+        'name' => 'Measure Units',
+        'index_title' => 'Measure Unit List',
+        'new_title' => 'New Measure Unit',
+        'create_title' => 'Create Measure Unit',
+        'edit_title' => 'Edit Measure Unit',
+        'show_title' => 'Show Measure Unit',
         'inputs' => [
-            'unit_name' => 'Unit Name',
+            'unit_name' => 'Measure Unit Name',
             'unit_description' => 'Description',
         ],
     ],

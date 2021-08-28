@@ -1,44 +1,71 @@
 @extends('layouts.appbar')
 
+@section('title', 'DIT Restuarant')
+
 @section('content')
-<div class="container">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">                
-                <div class="col-md-6">
-                    <div class="user-photo m-b-30">
-                        <img height="150px" class="img-fluid" src="/assets/images/invoice.jpg" alt="Invoice Image" />
-                    </div>
-                </div>                
-                <div class="col-md-2">
-                    
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 p-r-0 title-margin-right">
+            <div class="page-header">
+                <div class="page-title">
+                    <h1>@lang('crud.res_sections.name')</h1>
                 </div>
             </div>
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered ">
-                        <thead class="thead-light">                            
-                                <tr>                                  
-                                    <th class="text-left">
-                                        @lang('crud.res_sections.inputs.section_name')
-                                    </th>                                    
-                                </tr>                        
-                        </thead>
-                    <tbody>                                  
-                        <tr>
-                            <td>{{ $resSection->section_name ?? '-' }}</td>                   
-                        </tr>    
-                    </tbody>
-                </table>
-                <div class="row">
-                    <a
-                        href="{{ route('res-sections.index') }}"
-                        class="btn btn-sm btn-light"
-                    >
-                        <i class="icon ion-md-return-left"></i>
-                        @lang('crud.common.back')
-                    </a>                    
-                </div>
         </div>
+        <!-- /# column -->
+        <div class="col-lg-4 p-l-0 title-margin-left">
+            <div class="page-header">
+                <div class="page-title">
+                    <ol class="breadcrumb">
+                    <a class="breadcrumb-item" href="{{ route('cafeDashboard') }}"> Dashboard</a>
+                    <a class="breadcrumb-item" href="{{ route('res-sections.index') }}"> Departments</a>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /# column -->
     </div>
+    <!-- /# row -->
+    <section id="main-content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card border-success">
+                    <div class="card-header border-success">
+                        <h4 class="card-title">
+                            <!-- edit thisItem Category (uses the edit method found at GET /user/{id}/edit -->
+                            <a><span class="glyphicon glyphicon-edit"></span>
+                                @lang('crud.res_sections.show_title'):
+                             </a>
+                             <a class="btn btn-sm btn-info" href="{{ route('res-sections.edit', $resSection) }}">
+                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-pencil-alt"></i>
+                                 @lang('crud.res_sections.edit_title')
+                             </a>
+                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
+                                Back </span>
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                    <div class="container-fluid">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="display-details">
+                                        <h6><strong> @lang('crud.res_sections.inputs.section_name'): </strong>{{ $resSection->section_name ?? '-' }}</h4>
+                                        <h6><strong> @lang('crud.res_sections.inputs.description'): </strong>{{ $resSection->description ?? '-' }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>   
+                </div>
+            </div>    
+        </div>
+        
+        @include('partials.footer') 
+    </section>
 </div>
 @endsection
+
+    

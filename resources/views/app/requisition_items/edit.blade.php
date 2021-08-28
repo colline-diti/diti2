@@ -30,7 +30,9 @@
             <div class="card border-success">
                     <div class="card-header border-success">
                         <h4 class="card-title">
-            
+                                    @php
+                                        $restaursnt_requisitions= DB::select('SELECT requisition_code FROM restaurant_requisitions');
+                                    @endphp
                              <!-- Create new Role-->
                              <a><span class="glyphicon glyphicon-edit"></span>
                                 Requisition Code: RO.{{ $restaurantRequisition->requisition_code ?? '-' }}
@@ -69,24 +71,24 @@
                                                 </button>
                                             </div>
                                         </x-form>
-                                    </div>                              
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="card border-success">
-                                    <div class="card-body">
-                                        @can('view-any', App\Models\RequisitionDelivery::class)
-                                            <div class="card mt-4">
-                                                <div class="card-body">
-                                                    <h4 class="card-title">Requisition Deliveries</h4>
-                                
-                                                    <livewire:requisition-item-requisition-deliveries-detail
-                                                        :requisitionItem="$requisitionItem"
-                                                    />
-                                                </div>
+                                    </div>   
+                                    <div class="row">
+                                        <div class="card border-success">
+                                            <div class="card-body">
+                                                @can('view-any', App\Models\RequisitionDelivery::class)
+                                                    <div class="card mt-4">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">Requisition Deliveries</h4>
+                                        
+                                                            <livewire:requisition-item-requisition-deliveries-detail
+                                                                :requisitionItem="$requisitionItem"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                @endcan
                                             </div>
-                                        @endcan
-                                    </div>
+                                        </div>
+                                    </div>                           
                                 </div>
                             </div>
                         </div>

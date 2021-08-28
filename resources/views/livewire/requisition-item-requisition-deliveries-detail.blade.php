@@ -86,7 +86,7 @@
         </div>
     </x-modal>
 
-    <div class="table-responsive">
+    <div class="table-responsive col-lg-12">
         <table class="table table-borderless table-hover">
             <thead>
                 <tr>

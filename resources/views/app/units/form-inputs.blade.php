@@ -1,24 +1,21 @@
 @php $editing = isset($unit) @endphp
 
-<div class="row">
-    <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.text
-            name="unit_name"
-            label="Unit Name"
-            value="{{ old('unit_name', ($editing ? $unit->unit_name : '')) }}"
-            maxlength="255"
-            required
-        ></x-inputs.text>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.textarea
-            name="unit_description"
-            label="Unit Description"
-            maxlength="255"
-            required
-            >{{ old('unit_description', ($editing ? $unit->unit_description :
-            '')) }}</x-inputs.textarea
-        >
-    </x-inputs.group>
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">Department Name</label>
+    <input type="text" 
+     name="unit_name" 
+     class="form-control-label row col-sm-8" 
+     value="{{ old('unit_name', ($editing ? $unit->unit_name : '')) }}"
+     required
+     placeholder="Department Name">
+     
 </div>
+<div class="form-group row">
+    <label class="col-sm-3 col-form-label">Description</label>
+    <textarea type="text"
+    name="unit_description" 
+    class="form-control-label row col-sm-8" 
+    placeholder="Description"
+    required
+    >{{ old('unit_description', ($editing ? $unit->unit_description : '')) }}</textarea>
+</div> 

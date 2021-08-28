@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Restuarant Sections</span></h1>
+                    <h1>@lang('crud.res_sections.name')</span></h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <a class="breadcrumb-item" href="{{ URL::route('cafeDashboard') }}"> Dashboard</a>
-                    <a class="breadcrumb-item" href="{{ URL::route('res-sections.create') }}"> Sections</a>
+                    <a class="breadcrumb-item" href="{{ URL::route('res-sections.create') }}"> Departments</a>
                     </ol>
                 </div>
             </div>
@@ -33,11 +33,11 @@
             
                              <!-- Create new Role-->
                              <a><span class="glyphicon glyphicon-edit"></span>
-                                Add Section:
+                                @lang('crud.res_sections.new_title'):
                              </a>
                              <a class="btn btn-sm btn-info" href="#" >
                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                Create Section
+                                @lang('crud.res_sections.create_title')
                             </a>
                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                                 Back </span>
@@ -53,14 +53,13 @@
                                         <x-form
                                             method="POST"
                                             action="{{ route('res-sections.store') }}"
-                                            class="mt-4"
+                                            class="mt-2"
                                         >
                                             @include('app.res_sections.form-inputs')
 
-                                            <div class="mt-4">
-                                                
+                                            <div class="mt-2">
 
-                                                <button type="submit" class="btn btn-sm btn-primary float-right">
+                                                <button style="margin-left: 83%"  type="submit" class="btn btn-sm btn-primary">
                                                     <i class="icon ti-save"></i>
                                                     @lang('crud.common.create')
                                                 </button>

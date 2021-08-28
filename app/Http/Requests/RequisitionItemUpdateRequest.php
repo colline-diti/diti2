@@ -25,7 +25,7 @@ class RequisitionItemUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'max:255', 'string'],
-            'restaurant_requisition_id' => [
+            'restaurant_requisition_code' => [
                 'required',
                 'exists:restaurant_requisitions,id',
             ],

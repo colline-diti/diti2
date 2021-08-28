@@ -36,7 +36,7 @@
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('res-categories.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span>
+                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
                                  Create Category
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>

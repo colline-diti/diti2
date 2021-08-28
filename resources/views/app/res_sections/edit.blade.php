@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Hello, {{ Auth::user()->name }} <span>Welcome Here</span></h1>
+                    <h1>Restaurant Sections</span></h1>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
                                         @include('app.res_sections.form-inputs')
                         
                                         <div class="mt-4">
-                                            <button type="submit" class="btn  btn-sm btn-primary float-right">
+                                            <button style="margin-left: 83%"  type="submit" class="btn  btn-sm btn-primary">
                                                 <i class="icon ti-save"></i>
                                                 @lang('crud.common.update')
                                             </button>

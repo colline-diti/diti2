@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>{{  request()->route()->uri }}</span></h1>
+                    <h1>@lang('crud.res_sections.name')</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <a class="breadcrumb-item" href="{{ route('cafeDashboard') }}"> Dashboard</a>
-                        <a class="breadcrumb-item" href="{{ route('res-sections.index') }}"> Sections</a>
+                        <a class="breadcrumb-item" href="{{ route('res-sections.index') }}"> Departments</a>
                     </ol>
                 </div>
             </div>
@@ -32,12 +32,12 @@
                         <h4 class="card-title">
                               <!-- Create new User-->
                               <a><span class="glyphicon glyphicon-edit"></span>
-                                Restaurant Sections List:
+                                @lang('crud.res_sections.index_title'):
                              </a>
                              <!--Put Register link-->
                              <a class="btn btn-sm btn-info" href="{{ route('res-sections.create') }}">
                                  <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                 Create Section
+                                 @lang('crud.res_sections.create_title')
                              </a>
                              <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                               Back </span>
@@ -47,9 +47,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div  class="col-md-6 float-right">
-                                <form>
+                                <form class="form-control-label">
                                     <div class="input-group">
-                                        <input
+                                        <input class="form-control-label col-md-6"  
                                             id="indexSearch"
                                             type="text"
                                             name="search"
@@ -58,10 +58,10 @@
                                             class="form-control"
                                             autocomplete="off"
                                         />
-                                        <div class="input-group-append">
+                                        <div class="form-control-label input-group-append">
                                             <button
                                                 type="submit"
-                                                class="btn btn-primary"
+                                                class="btn btn-sm btn-primary"
                                             >
                                                 <i class="icon ti-search"></i>
                                             </button>
@@ -103,7 +103,7 @@
                                                 >
                                                     <button
                                                         type="button"
-                                                        class="btn btn-light"
+                                                        class="btn btn-sm btn-light"
                                                     >
                                                         <i class="icon ti-pencil-alt"></i>
                                                     </button>
@@ -114,7 +114,7 @@
                                                 >
                                                     <button
                                                         type="button"
-                                                        class="btn btn-light text-success"
+                                                        class="btn btn-sm btn-light text-success"
                                                     >
                                                         <i class="icon ti-eye"></i>
                                                     </button>
@@ -128,7 +128,7 @@
                                                     @csrf @method('DELETE')
                                                     <button
                                                         type="submit"
-                                                        class="btn btn-light text-danger"
+                                                        class="btn btn-sm btn-light text-danger"
                                                     >
                                                         <i class="icon ti-trash"></i>
                                                     </button>

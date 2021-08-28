@@ -57,14 +57,10 @@
                                         >
                                             @include('app.units.form-inputs')
 
-                                            <div class="mt-4">
-                                                <a href="{{ route('units.index') }}" class="btn btn-light">
-                                                    <i class="icon ion-md-return-left text-primary"></i>
-                                                    @lang('crud.common.back')
-                                                </a>
+                                            <div class="mt-4">                                              
 
-                                                <button type="submit" class="btn btn-primary float-right">
-                                                    <i class="icon ion-md-save"></i>
+                                                <button style="margin-left: 83%" type="submit" class="btn btn-sm btn-primary">
+                                                    <i class="icon ti-save"></i>
                                                     @lang('crud.common.create')
                                                 </button>
                                             </div>

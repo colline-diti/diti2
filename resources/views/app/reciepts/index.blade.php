@@ -1,6 +1,7 @@
 @extends('layouts.appbar')
 @extends('layouts.lay.SalespointScript')
 @section('content')
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-8 p-r-0 title-margin-right">
@@ -25,10 +26,14 @@
     </div>
     <!-- /# row -->
     <section id="main-content">
+      @if(session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+  @endif
         <div class="row">
-            <form 
-            action= "/res-products" method="POST">
-                {{ csrf_field() }}    
+          <form method="post" action="{{url('store-form')}}">
+          {{ csrf_field() }}    
             <div class="col-lg-12">
                 <div class="card border-success">
                     <div class="row">
@@ -36,19 +41,47 @@
                             <div class="card border-success" data-title="Access the Restuarent Dashboard">
                                                                 
                                 <h4>Products/Services Billing</h4>
-                                <form action="">
+                                <form action="reciepts" method="Post">
+                                <!-- <div class="row hidden-print">
+                                        <div class="col-md-8">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                    <select  name="paymet_type" aria-placeholder="add new client"
+                                                        class="form-control form-control-line">
+                                                        <option>Take away client</option>
+                                                        <option>DIT staff</option>
+                                                        <option>Other</option>
+                                                    <select>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <div class="col-md-12">
+                                                <button type="button" class="btn btn-sm btn-primary btn-purchase"
+                                                name="perchase">Add new Client</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
                                     <table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0"
                                         width="100%">
                                         <thead>
                                             <tr>
-                                                <div class="cart-row">
-                                                    <span class="cart-item cart-header cart-column">ITEM</span>
-                                                    <span class="cart-price cart-header cart-column">UNIT PRICE</span>
-                                                    <span class="cart-quantity cart-header cart-column">QUANTITY</span>
-                                                </div>
+                                            <div class="row hidden-print">
+                                        <div class="col-md-4">                                            
+                                            ITEM
+                                        </div>
+                                        <div class="col-md-4">                                            
+                                        UNIT PRICE
+                                        </div>
+                                        <div class="col-md-4">
+                                        QUANTITY
+                                        </div>
+                                        </div >   
                                                 <div class="cart-items">
                                                 </div>
-
                                             </tr>
                                         </thead>
                                         <tbody class="cart-items">
@@ -59,7 +92,7 @@
                                                     <th style="background-color:skyblue;">@lang('crud.reciepts.inputs.total')(UGX)</th>
                                                     <th colspan="2"><strong class="primary-color"><input type="text" name="total"
                                                                 required="required" class="cart-total-price form-control"
-                                                                readonly="readonly" style="font-size:50px;" id="total"
+                                                                 style="font-size:50px;" id="total"
                                                                 placeholder="0"></strong></th>
                                                 </tr>
                                                 <tr>
@@ -73,7 +106,7 @@
                                                     <th style="background-color:skyblue;"> @lang('crud.reciepts.inputs.change')(Ugx)</th>
                                                     <th colspan="2" class="total"><strong class="primary-color"><input type="text"
                                                                 id="balance" min="0" value="" placeholder="0" class="form-control"
-                                                                readonly="readonly" name="balance" style="font-size:50px;"></strong>
+                                                                 name="balance" style="font-size:50px;"></strong>
                                                     </th>
 
                                                 </tr>
@@ -81,34 +114,50 @@
                                                     <th style="background-color:skyblue;">@lang('crud.reciepts.inputs.balance')(Ugx)</th>
                                                     <th colspan="2" class="total"><strong class="primary-color"><input type="text"
                                                                 id="debt" min="0" value="" placeholder="0" class="form-control"
-                                                                readonly="readonly" name="debt" style="font-size:50px;"></strong></th>
+                                                                 name="debt" style="font-size:50px;"></strong></th>
 
                                                 </tr>
                                             </tfoot>
-                                    </table>
-                                  
+                                    </table>                                  
                                     <div class="row hidden-print">
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
                                                 <label class="col-md-12"> @lang('crud.reciepts.inputs.served_by')</label>
                                                 <div class="col-md-12">
-                                                    <input type="text" id="noteditable"
+                                                    <input type="text" style="pointer-events: none;"
                                                         value="{{ Auth::user()->name }}"
                                                         name="served_by" class="form-control form-control-line">
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <label class="col-md-12">Created at:</label>
+                                                <label class="col-md-12">Discounts(if any):</label>
                                                 <div class="col-md-12">
-                                                    <input style="pointer-events: none;" type="text" name="date"
-                                                        value="date"
+                                                    <input text  name="discount" placeholder="Enter Ammount here"
                                                         class="form-control form-control-line">
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="col-md-12">Payment Type:</label>
+                                                <div class="col-md-12">
+                                                    <select  name="paymet_type"
+                                                        class="form-control form-control-line">
+                                                        <option>Cash</option>
+                                                        <option>Credit</option>
+                                                        <option>Check</option>
+                                                        <option>Mobile Money</option>
+                                                        <option>Other</option>
+                                                    <select>
+                                                
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                     </div>
                                     
@@ -129,7 +178,7 @@
                                         <!--itmes col-->                   
                                         </div>
                                     </div>
-                                </form>
+                                    </form>
 
                                 <div class="col-lg-5">
                                         <div class="card border-success" data-title="Access the Inventory Dashboard">
@@ -157,7 +206,7 @@
                                                                                     style="color:black">{{ $resProduct->product_price }}</span>
                                                                                 <span class="shop-item-quantity"
                                                                                     style="color:black;display:none;">{{ $resProduct->product_price }}</span>
-                                                                                <button class="btn btn-sm btn-primary shop-item-button" type="button">ADD TO
+                                                                                <button class="btn btn-sm btn-primary shop-item-button" type="button"> <i  class="ti-plus"></i> ADD TO
                                                                                     BILL</button>
                                                                             </div>
                                                                             @empty
@@ -191,4 +240,3 @@
 
 @include('partials.footer') 
 @endsection
-

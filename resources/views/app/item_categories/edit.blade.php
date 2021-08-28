@@ -6,7 +6,7 @@
         <div class="col-lg-8 p-r-0 title-margin-right">
             <div class="page-header">
                 <div class="page-title">
-                    <h1>Edit Category</h1>
+                    <h1>@lang('crud.item_categories.name')</h1>
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
                 <div class="page-title">
                     <ol class="breadcrumb">
                         <a class="breadcrumb-item" href="{{ URL::route('cafeDashboard') }}"> Dashboard</a>
-                    <a class="breadcrumb-item" href="{{ URL::route('item-categories.create') }}"> Stock Management</a>
+                    <a class="breadcrumb-item" href="{{ URL::route('item-categories.create') }}"> Item Categories</a>
                     </ol>
                 </div>
             </div>
@@ -33,11 +33,11 @@
             
                              <!-- Create new Role-->
                              <a><span class="glyphicon glyphicon-edit"></span>
-                                Edit  Category
+                                @lang('crud.item_categories.edit_title')
                              </a>
                              <a class="btn btn-sm btn-info" href="#" >
                                 <span class="glyphicon glyphicon-edit"></span><i class="ti-pencil-alt"></i>
-                                Edit Category
+                                @lang('crud.item_categories.edit_title')
                             </a>
                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                                 Back </span>
@@ -59,7 +59,7 @@
                         
                                         <div class="mt-4">
                                            
-                                            <button type="submit" class="btn btn-sm btn-primary float-right">
+                                            <button style="margin-left: 83%" type="submit" class="btn btn-sm btn-primary">
                                                 <i class="icon ti-save"></i>
                                                 @lang('crud.common.update')
                                             </button>

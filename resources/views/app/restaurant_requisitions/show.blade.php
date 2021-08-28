@@ -101,7 +101,7 @@
                                                     $requisitionItems = DB::select('SELECT requisition_items.name, restaurant_requisitions.requisition_code,requisition_items.id,requisition_deliveries.item_quantity,requisition_deliveries.delivery_date,requisition_deliveries.remarks
                                                     from requisition_deliveries,requisition_items,restaurant_requisitions 
                                                     WHERE (requisition_items.id = requisition_deliveries.requisition_item_id) AND 
-                                                    restaurant_requisitions.requisition_code = 1002');
+                                                    restaurant_requisitions.requisition_code = "1001"');
                                                     $k = "#";
                                                 @endphp                                 
                                                 @forelse($requisitionItems as $requisitionItem)

@@ -63,8 +63,8 @@
                                                     @lang('crud.common.back')
                                                 </a>                           
                                                 
-                                                <button type="submit" class="btn btn-primary float-right">
-                                                    <i class="icon ion-md-save"></i>
+                                                <button type="submit" class="btn btn-sm btn-primary float-right">
+                                                    <i class="icon ti-save"></i>
                                                     @lang('crud.common.update')
                                                 </button>
                                             </div>

@@ -55,7 +55,7 @@
                                         <h6><strong>@lang('crud.stock_tables.inputs.quantity'): </strong>{{ $stockTable->quantity ?? '-' }}</h4>                                          
                                         <h6><strong>@lang('crud.stock_tables.inputs.item_category_id'): </strong>{{ optional($stockTable->itemCategory)->name ?? '-'
                                         }}</h4>
-                                        <h6><strong>@lang('crud.stock_tables.input.unit_id'): </strong>{{ optional($stockTable->unit)->unit_name ?? '-'
+                                        <h6><strong>@lang('crud.stock_tables.inputs.unit_id'): </strong>{{ optional($stockTable->unit)->unit_name ?? '-'
                                         }}</h4>
                                             <h6><strong>@lang('crud.stock_tables.inputs.remarks'): </strong>{{ $stockTable->remarks ?? '-' }}</h4>
                                     </div>

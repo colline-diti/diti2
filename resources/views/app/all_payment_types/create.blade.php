@@ -35,10 +35,7 @@
                              <a><span class="glyphicon glyphicon-edit"></span>
                                 Add Payment Type:
                              </a>
-                             <a class="btn btn-sm btn-info" href="#" >
-                                <span class="glyphicon glyphicon-edit"></span><i class="ti-plus"></i>
-                                Create Payment type
-                            </a>
+                             
                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
                                 Back </span>
                             </a>
@@ -58,6 +55,12 @@
                                                 @include('app.all_payment_types.form-inputs')
 
                                                 <div class="mt-4">
+                                                    <a
+                                                        href="{{ route('all-tax-rates.index') }}"
+                                                        class="btn btn-sm btn-light"
+                                                    >                                                   
+                                                        @lang('crud.common.back')
+                                                    </a>  
 
                                                     <button type="submit" class="btn btn-sm btn-primary float-right">
                                                         <i class="icon ti-save"></i>
