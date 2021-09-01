@@ -1,152 +1,98 @@
 @extends('layouts.appbar')
 
 @section('content')
-<div class="container-fluid">
+<div class="container-fluid"><br>
     <div class="row">
-        <div class="col-lg-8 p-r-0 title-margin-right">
-            <div class="page-header">
-                <div class="page-title">
-                    <h1>Item Settings</h1>
-                </div>
-            </div>
+        <div class="col-lg- 12 p-r-0 title-margin-right">
+            <h4 style="margin-bottom: 0.5em;" class="card-title">                
+                <!--Put Register link-->
+                <a class="btn btn-sm btn-success ml-3" href="">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Items
+                </a>
+                <a class="btn btn-sm btn-info ml-1"  href="{{ route('item-categories.categories') }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Categories
+                </a>
+                <a class="btn btn-sm btn-info ml-1" data-toggle="modal" data-target="#addUnits" href="">
+                    <span class="glyphicon glyphicon-edit">
+                    Units
+                </a>
+                <a class="btn btn-sm btn-info ml-1" data-toggle="modal" data-target="#addDepartment" href="">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Departments
+                </a>                
+            </h4>
+           
         </div>
-        <!-- /# column -->
-        <div class="col-lg-4 p-l-0 title-margin-left">
-            <div class="page-header">
-                <div class="page-title">
-                    <ol class="breadcrumb">
-                        <a class="breadcrumb-item" href="{{ route('cafeDashboard') }}"> Dashboard</a>
-                        <a class="breadcrumb-item" href="{{ route('item-categories.index') }}"> Item Categories</a>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        <!-- /# column -->
     </div>
     <!-- /# row -->
     <section id="main-content">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card border-success">
-                    <div class="card-header border-success">
-                        <h4 class="card-title">
-                              <!-- Create new User-->
-                              <a><span class="glyphicon glyphicon-edit"></span>
-                                @lang('crud.item_categories.index_title'):
-                             </a>
-                             <!--Put Register link-->
-                             <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#addItem" href="">
-                                <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
-                                Add Item
-                            </a>
-                             <a class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#addCategory"  href="">
-                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
-                                 Add Item Category
-                             </a>
-                            
-                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
-                              Back </span>
-                             </a>
-                        </h4>
-                    </div>
+                <div class="card border-success">                    
                     <div class="card-body">
                         <div class="row">
-                            <div  class="col-md-6 float-right">
-                                <form class="form-control-label">
-                                    <div class="form-control-label input-group">
-                                        <input class="form-control-label col-md-6"  
-                                            id="indexSearch"
-                                            type="text"
-                                            name="search"
-                                            placeholder="{{ __('crud.common.search') }}"
-                                            value="{{ $search ?? '' }}"
-                                            class="form-control"
-                                            autocomplete="off"
-                                        />
-                                        <div class="form-control-label input-group-append">
-                                            <button
-                                                type="submit"
-                                                class="btn btn-sm btn-primary"
-                                            >
-                                                <i class="icon ti-search"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
+                            <div class="col-md-6 float-right">
                             </div>
                         </div>
-                    
-                        <div class="col-lg-12">
-                            <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 style="margin-bottom: 0.5em;" class="card-title">                                   
+                                    <!-- Create new User-->
+                                    <a><span class="glyphicon glyphicon-edit"></span>
+                                        Available Items
+                                    </a>  
+                                    <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#addItem" href="">
+                                        <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
+                                       Add Item
+                                    </a>                                  
+                                </h4>
                                 <div class="table-responsive">
-                                    <table class="table table-borderless table-hover">
+                                    <table class="table table-border table-hover" id="items">
                                         <thead>
                                             <tr>
                                                 <th class="text-left">
-                                                    @lang('crud.item_categories.inputs.name')
-                                                </th>                                                                             
+                                                    NO
+                                                </th>
+                                                <th class="text-left">
+                                                    Name
+                                                </th>
+                                                <th class="text-left">
+                                                    Category
+                                                </th>
                                                 <th class="text-center">
                                                     @lang('crud.common.actions')
                                                 </th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @forelse($itemCategories as $itemCategory)
-                                            <tr>
-                                                <td>{{ $itemCategory->name ?? '-' }}</td>                                                                            
+                                            @php
+                                            $items = DB::select("select * from items i ,category3 c WHERE i.category_id=c.category_id");
+                                            @endphp
+                                            @forelse ($items as $itemCategory) <tr>
+                                                <td>{{ $itemCategory->item_id  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->item_name  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->category_name  ?? '-' }}</td>
                                                 <td class="text-center" style="width: 134px;">
-                                                    <div
-                                                        role="group"
-                                                        aria-label="Row Actions"
-                                                        class="btn-group"
-                                                    >
+                                                    <div role="group" aria-label="Row Actions" class="btn-group">
                                                         @can('update', $itemCategory)
-                                                        <a
-                                                            href="{{ route('item-categories.edit', $itemCategory) }}"
-                                                        >
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-sm btn-light"
-                                                            >
+                                                        <a href="">
+                                                            <button type="button" class="btn btn-sm btn-light">
                                                                 <i class="icon ti-pencil-alt"></i>
                                                             </button>
                                                         </a>
-                                                        @endcan @can('view', $itemCategory)
-                                                        <a
-                                                            href="{{ route('item-categories.show', $itemCategory) }}"
-                                                        >
-                                                            <button
-                                                                type="button"
-                                                                class="btn btn-sm btn-light text-success"
-                                                            >
-                                                                <i class="icon ti-eye"></i>
-                                                            </button>
-                                                        </a>
-                                                        @endcan @can('delete', $itemCategory)
-                                                        <form
-                                                            action="{{ route('item-categories.destroy', $itemCategory) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
-                                                        >
-                                                            @csrf @method('DELETE')
-                                                            <button
-                                                                type="submit"
-                                                                class="btn btn-sm btn-light text-danger"
-                                                            >
-                                                                <i class="icon ti-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                        @endcan
+                                                        @endcan 
                                                     </div>
                                                 </td>
                                             </tr>
                                             @empty
                                             <tr>
-                                                <td colspan="4">
+                                                <td colspan="2">
                                                     @lang('crud.common.no_items_found')
                                                 </td>
                                             </tr>
-                                            @endforelse
+                                            @endif
                                         </tbody>
                                         <tfoot>
                                             <tr>
@@ -156,23 +102,37 @@
                                             </tr>
                                         </tfoot>
                                     </table>
+                                    <h4 style="margin-top: 0.5em;" class="card-title">
+                                        <!--Put Register link-->
+                                    <button style="margin-left: 78%;" class="btn btn-sm btn-danger">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Export to PDF
+                                    </button>
+                                    <button class="btn btn-sm btn-success float-right">
+                                        <span class="glyphicon glyphicon-edit"></span></i>
+                                        Export to excel
+                                    </button>
+                                    </h4>
                                 </div>
-                            </div>
-
-                            <div class="col-lg-6">
-
-                            </div>
-                        </div>
-                  
-                    </div>   
+                            </div>                    
+                       
+                    </div>
                 </div>
-            </div>    
-        </div> 
+            </div>
 
-        @include('partials.modals.addItem')
-        @include('partials.modals.addCategory')
-        @include('partials.footer') 
-    </section>
-  </div>
+        </div>
+
+        <!--Row 2---->
+    </div>
+</div>
+</div>
+
+
+@include('partials.modals.ItemAction.addItem')
+@include('partials.modals.CategoryAction.addDepartment')
+@include('partials.modals.CategoryAction.addCategory')
+@include('partials.modals.CategoryAction.addUnits')
+@include('partials.footer')
+</section>
+</div>
 @endsection
-

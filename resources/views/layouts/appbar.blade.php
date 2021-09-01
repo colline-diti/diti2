@@ -17,9 +17,13 @@
     <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
     <!-- Standard iPhone Touch Icon-->
     <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
+    
+    
     <!-- Styles -->
     @livewireStyles
     <script src="{{ asset('assets/js/lib/alpine.min.js') }} "></script>
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    
     
     <link href="{{ asset('assets/css/lib/calendar2/pignose.calendar.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/lib/chartist/chartist.min.css') }}" rel="stylesheet">
@@ -32,6 +36,9 @@
     <link href="{{ asset('assets/css/lib/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/lib/helper.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('DataTables/datatables.css') }}">
+ 
     <style>
         ::-webkit-datetime-edit-day-field:not([aria-valuenow]),
         ::-webkit-datetime-edit-month-field:not([aria-valuenow]),
@@ -71,6 +78,8 @@
     <script src="{{ asset('assets/js/lib/menubar/sidebar.js') }}"></script>
     <script src="{{ asset('assets/js/lib/preloader/pace.min.js') }}"></script>
     <script src="{{ asset('assets/js/lib/jquery-3.6.0.js') }}"></script>
+
+    <script type="text/javascript" charset="utf8" src="{{ asset('DataTables/datatables.js') }}"></script>
     <!-- sidebar -->
 
     <script src="{{ asset('assets/js/lib/bootstrap.min.js') }}"></script>

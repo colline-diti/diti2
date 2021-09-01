@@ -1,185 +1,154 @@
 @extends('layouts.appbar')
 
 @section('content')
-<div class="container-fluid">
+
+<script>            
+    function formatRows(main, prefer, common) {
+        return '<tr><td class="col-xs-2"><input type="text" value="' +main+ '" class="form-control editable" /></td>' +
+                '<td class="col-xs-4"><input type="text" value="' +prefer+ '" class="form-control editable" /></td>' +
+                '<td class="col-xs-3"><input type="text" value="' +common+ '" class="form-control editable" /></td>' +                    
+                '<td class="col-xs-1 text-center"><a href="#" onClick="deleteRow(this)">' +
+                '<i class="fa fa-trash-o" aria-hidden="true"></a></td></tr>';
+        };
+
+        function deleteRow(trash) {
+        $(trash).closest('tr').remove();
+        };
+
+        function addRow() {
+        var main = $('.addMain').val();
+        var preferred = $('.addPrefer').val();
+        var common = $('.addCommon').val();
+        $(formatRows(main,preferred,common)).insertAfter('#addRow');
+        $(input).val('');  
+        }
+
+        $('.addBtn').click(function()  {
+        addRow();
+    });
+</script>
+
+<div class="container-fluid"><br>
     <div class="row">
-        <div class="col-lg-8 p-r-0 title-margin-right">
-            <div class="page-header">
-                <div class="page-title">
-                    <h1>Stocks</span></h1>
-                </div>
-            </div>
+        <div class="col-lg- 12 p-r-0 title-margin-right">
+            <h4 style="margin-bottom: 0.5em;" class="card-title">                
+                <!--Put Register link-->
+                <a class="btn btn-sm btn-success ml-3" href="{{ route('stock-tables.index') }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Stock
+                </a>
+                <a class="btn btn-sm btn-info ml-1"  href="{{ route('item-categories.categories') }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Discharge Stock
+                </a>                            
+            </h4>
+           
         </div>
-        <!-- /# column -->
-        <div class="col-lg-4 p-l-0 title-margin-left">
-            <div class="page-header">
-                <div class="page-title">
-                    <ol class="breadcrumb">
-                        <a class="breadcrumb-item" href="{{ route('cafeDashboard') }}"> Dashboard</a>
-                        <a class="breadcrumb-item" href="{{ route('stock-tables.index') }}"> Stock Management</a>
-                    </ol>
-                </div>
-            </div>
-        </div>
-        <!-- /# column -->
     </div>
     <!-- /# row -->
     <section id="main-content">
         <div class="row">
             <div class="col-lg-12">
-                <div class="card border-success">
-                    <div class="card-header border-success">
-                        <h4 class="card-title">
-                              <!-- Create new User-->
-                              <a><span class="glyphicon glyphicon-edit"></span>
-                                Stock List:
-                             </a>
-                             <!--Put Register link-->
-                             <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#addStock" href="{{ route('stock-tables.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
-                                 Add stock
-                             </button>
-                             <button class="btn btn-sm btn-info ml-4" data-toggle="modal" data-target="#dischargeStock" href="{{ route('stock-tables.create') }}">
-                                 <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
-                                 Stock Discharge
-                             </button>                           
-                             <a class="btn btn-sm btn-dark float-right" href="{{ url()->previous() }}" ><span><i class="ti-angle-double-left"></i>
-                              Back </span>
-                             </a>
-                        </h4>
-                    </div>
+                <div class="card border-success">                    
                     <div class="card-body">
                         <div class="row">
-                            <div  class="col-md-6 float-right">
-                                <form>
-                                    <div class="input-group">
-                                        <input
-                                            id="indexSearch"
-                                            type="text"
-                                            name="search"
-                                            placeholder="{{ __('crud.common.search') }}"
-                                            value="{{ $search ?? '' }}"
-                                            class="form-control"
-                                            autocomplete="off"
-                                        />
-                                        <div class="input-group-append">
-                                            <button
-                                                type="submit"
-                                                class="btn btn-primary"
-                                            >
-                                                <i class="icon ti-search"></i>
-                                            </button>
-                                        </div>                                        
-                                    </div>
-                                </form>
+                            <div class="col-md-6 float-right">
                             </div>
-                        </div>                    
-                        <div class="table-responsive">
-                            <table class="table table-hover ">
-                                <thead>
-                                    <tr>
-                                        <th class="text-left">
-                                            @lang('crud.stock_tables.inputs.item_name')
-                                        </th>
-                                        <th class="text-left">
-                                            @lang('crud.stock_tables.inputs.quantity')
-                                        </th>
-                                        <th class="text-left">
-                                            @lang('crud.stock_tables.inputs.item_category_id')
-                                        </th>                                   
-                                        
-                                        <th class="text-left">
-                                            @lang('crud.stock_tables.inputs.remarks')
-                                        </th>
-                                        <th class="text-center">
-                                            @lang('crud.common.actions')
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse($stockTables as $stockTable)
-                                    <tr>
-                                        <td>{{ $stockTable->item_name ?? '-' }}</td>
-                                        <td>{{ $stockTable->quantity ?? '-' }}
-                                            {{ optional($stockTable->unit)->unit_name ?? '-' }}
-                                        </td>                                            
-                                        <td>{{
-                                                optional($stockTable->itemCategory)->name
-                                                ?? '-' }}
-                                        </td>                                                                                                                              
-                                        <td>{{ $stockTable->remarks ?? '-' }}</td>
-                                        <td class="text-center" style="width: 134px;">
-                                            <div
-                                                role="group"
-                                                aria-label="Row Actions"
-                                                class="btn-group"
-                                            >
-                                                @can('update', $stockTable)
-                                                <a
-                                                    href="{{ route('stock-tables.edit', $stockTable) }}"
-                                                >
-                                                    <button
-                                                        type="button"
-                                                        class="btn btn-sm btn-light"
-                                                    >
-                                                        <i class="icon ti-pencil-alt"></i>
-                                                    </button>
-                                                </a>
-                                                @endcan @can('view', $stockTable)
-                                                <a
-                                                    href="{{ route('stock-tables.show', $stockTable) }}"
-                                                >
-                                                    <button 
-                                                        type="button"
-                                                        class="btn btn-sm btn-light text-success"
-                                                    >
-                                                        <i class="icon ti-eye"></i>
-                                                    </button>
-                                                </a>
-                                                @endcan @can('delete', $stockTable)
-                                                <form
-                                                    action="{{ route('stock-tables.destroy', $stockTable) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')"
-                                                >
-                                                    @csrf @method('DELETE')
-                                                    <button 
-                                                        type="submit"
-                                                        class="btn btn-sm btn-light text-danger"
-                                                    >
-                                                        <i class="icon ti-trash"></i>
-                                                    </button>
-                                                </form>
-                                                @endcan
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="7">
-                                            @lang('crud.common.no_items_found')
-                                        </td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="7">{!! $stockTables->render() !!}</td>
-                                        </tr>
-                                    </tfoot>
-                                </tbody>
-                            </table>
                         </div>
-                  
-                    </div>   
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h4 style="margin-bottom: 0.5em;" class="card-title">                                   
+                                    <!-- Create new User-->
+                                    <a><span class="glyphicon glyphicon-edit"></span>
+                                        Available Stock
+                                    </a>  
+                                    <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#addStock" href="">
+                                        <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
+                                       Add Stock
+                                    </a>                                  
+                                </h4>
+                                <div class="table-responsive">
+                                    <table class="table table-border table-hover" id="items">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-left">
+                                                    NO
+                                                </th>
+                                                <th class="text-left">
+                                                    Name
+                                                </th>
+                                                <th class="text-left">
+                                                    Category
+                                                </th>
+                                                <th class="text-center">
+                                                    @lang('crud.common.actions')
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php
+                                            $items = DB::select("select * from items i ,category3 c WHERE i.category_id=c.category_id");
+                                            @endphp
+                                            @forelse ($items as $itemCategory) <tr>
+                                                <td>{{ $itemCategory->item_id  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->item_name  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->category_name  ?? '-' }}</td>
+                                                <td class="text-center" style="width: 134px;">
+                                                    <div role="group" aria-label="Row Actions" class="btn-group">
+                                                        @can('update', $itemCategory)
+                                                        <a href="">
+                                                            <button type="button" class="btn btn-sm btn-light">
+                                                                <i class="icon ti-pencil-alt"></i>
+                                                            </button>
+                                                        </a>
+                                                        @endcan 
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="2">
+                                                    @lang('crud.common.no_items_found')
+                                                </td>
+                                            </tr>
+                                            @endif
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="4">
+                                                    
+                                                </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <h4 style="margin-top: 0.5em;" class="card-title">
+                                        <!--Put Register link-->
+                                    <button style="margin-left: 78%;" class="btn btn-sm btn-danger">
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        Export to PDF
+                                    </button>
+                                    <button class="btn btn-sm btn-success float-right">
+                                        <span class="glyphicon glyphicon-edit"></span></i>
+                                        Export to excel
+                                    </button>
+                                    </h4>
+                                </div>
+                            </div>                    
+                       
+                    </div>
                 </div>
-            </div>    
-        </div> 
-        
-      
-        @include('partials.modals.addStock')
-        @include('partials.modals.dischargeStock')
-        @include('partials.footer') 
-    </section>
-  </div>
+            </div>
+
+        </div>
+
+        <!--Row 2---->
+    </div>
+</div>
+</div>
+
+
+@include('partials.modals.stockAction.addStock')
+@include('partials.footer')
+</section>
+</div>
 @endsection

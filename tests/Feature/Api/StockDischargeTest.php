@@ -72,6 +72,7 @@ class StockDischargeTest extends TestCase
 
         $data = [
             'quantity_issued' => $this->faker->randomNumber(0),
+            'section' => $this->faker->text(255),
             'description' => $this->faker->sentence(15),
             'issued_by' => $this->faker->text(255),
             'stock_table_id' => $stockTable->id,

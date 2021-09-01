@@ -8,7 +8,7 @@
                 </li>
 
                 <li class="label">Features</li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> User Accounts<span
+                <li><a class="sidebar-sub-toggle"><i class="ti-user"></i> User Accounts<span
                     class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>                       
                         <li><a href="{{ route('users.index') }}"><i class="ti-tag"></i> Users</a></li>                                              
@@ -20,7 +20,8 @@
                         <li><a href="{{ route('roles.index') }}"><i class="ti-tag"></i> Create Role</a></li>                         
                     </ul>
                 </li>
-                <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> Staff Attendance<span
+                <!-----
+                     <li><a class="sidebar-sub-toggle"><i class="ti-panel"></i> Staff Attendance<span
                     class="sidebar-collapse-icon ti-angle-down"></span></a>
                     <ul>
                         <li><a href="" ><i class="ti-tag"></i> Mark Attendance</a></li>                                             
@@ -34,7 +35,9 @@
                         <li><a href=""> <i class="ti-tag"></i> Allowances</a></li> 
                                                                  
                     </ul>
-                </li>    
+                </li>                     
+                ------>
+                  
             </ul>
         </div>
     </div>

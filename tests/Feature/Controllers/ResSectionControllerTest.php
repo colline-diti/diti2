@@ -64,6 +64,8 @@ class ResSectionControllerTest extends TestCase
 
         $response = $this->post(route('res-sections.store'), $data);
 
+        unset($data['description']);
+
         $this->assertDatabaseHas('res_sections', $data);
 
         $resSection = ResSection::latest('id')->first();
@@ -117,6 +119,8 @@ class ResSectionControllerTest extends TestCase
             route('res-sections.update', $resSection),
             $data
         );
+
+        unset($data['description']);
 
         $data['id'] = $resSection->id;
 

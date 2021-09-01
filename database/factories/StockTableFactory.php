@@ -25,9 +25,10 @@ class StockTableFactory extends Factory
         return [
             'item_name' => $this->faker->text(255),
             'quantity' => $this->faker->randomNumber,
+            'unit' => $this->faker->text(255),
+            'buying_price' => $this->faker->randomNumber,
             'remarks' => $this->faker->sentence(15),
             'item_category_id' => \App\Models\ItemCategory::factory(),
-            'unit_id' => \App\Models\Unit::factory(),
         ];
     }
 }

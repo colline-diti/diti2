@@ -6,6 +6,7 @@ use App\Models\ItemCategory;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemCategoryStoreRequest;
 use App\Http\Requests\ItemCategoryUpdateRequest;
+use Illuminate\Support\Facades\DB;
 
 class ItemCategoryController extends Controller
 {
@@ -27,6 +28,63 @@ class ItemCategoryController extends Controller
             'app.item_categories.index',
             compact('itemCategories', 'search')
         );
+    }
+
+    public function categories(){
+        return view('app.item_categories.categories');
+    }
+    public function units(){
+        return view('app.item_categories.units');
+    }
+    public function departments(){
+        return view('app.item_categories.departments');
+    }
+
+    //inserting new category
+    public function insert(Request $request){
+        $salesid = "/".time();
+        $item_name = $request->input('item_name');
+        $category_id = $request->input('category_id');
+       // $served_by = $requesItemt->input('served_by');
+        $data = array(
+        "item_name" => $item_name,
+        "category_id" => $category_id,
+        );
+        DB::table('items')->insert($data);
+        return redirect('item-categories')->withSuccess(__('crud.common.created'));
+    }
+
+    //adding new category
+    public function newCategory(Request $request){
+        $category_name = $request->input('category_name');
+       // $served_by = $request->input('served_by');
+        $data = array(
+        "category_name" => $category_name,
+        );
+        DB::table('category3')->insert($data);
+        return redirect('item-categories')->withSuccess(__('crud.common.created'));
+    }
+
+    //adding new units
+    public function newUnit(Request $request){
+        $unit_name = $request->input('unit_name');
+       // $served_by = $request->input('served_by');
+        $data = array(
+        "unit_name" => $unit_name,
+        );
+        DB::table('unit3')->insert($data);
+        return redirect('item-categories')->withSuccess(__('crud.common.created'));
+    }
+
+    //adding new department
+    public function newDepartment(Request $request){
+        $department_name = $request->input('department_name');
+       // $served_by = $request->input('served_by');
+        $data = array(
+        "department_name" => $department_name,
+        );
+        DB::table('department3')->insert($data);
+        return redirect('item-categories')->withSuccess(__('crud.common.created'));
     }
 
     /**

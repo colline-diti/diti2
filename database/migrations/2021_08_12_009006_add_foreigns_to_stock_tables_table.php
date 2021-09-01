@@ -20,13 +20,6 @@ class AddForeignsToStockTablesTable extends Migration
                 ->on('item_categories')
                 ->onUpdate('CASCADE')
                 ->onDelete('CASCADE');
-
-            $table
-                ->foreign('unit_id')
-                ->references('id')
-                ->on('units')
-                ->onUpdate('CASCADE')
-                ->onDelete('CASCADE');
         });
     }
 
@@ -39,7 +32,6 @@ class AddForeignsToStockTablesTable extends Migration
     {
         Schema::table('stock_tables', function (Blueprint $table) {
             $table->dropForeign(['item_category_id']);
-            $table->dropForeign(['unit_id']);
         });
     }
 }

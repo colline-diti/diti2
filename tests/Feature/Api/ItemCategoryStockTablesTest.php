@@ -64,6 +64,8 @@ class ItemCategoryStockTablesTest extends TestCase
             $data
         );
 
+        unset($data['item_category_id']);
+
         $this->assertDatabaseHas('stock_tables', $data);
 
         $response->assertStatus(201)->assertJsonFragment($data);
