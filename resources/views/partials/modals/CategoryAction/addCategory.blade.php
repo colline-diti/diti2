@@ -14,7 +14,21 @@
             <div class="form-group row">
               <label class="col-sm-4 col-form-label">Category Name</label>
               <input type="text" name = "category_name" required class="form-control-label col-sm-7" placeholder="Enter Name">
-            </div>       
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-4 col-form-label">Units</label>
+              <select class="form-control-label col-sm-7" name="category_id" id="exampleFormControlSelect1">
+                  <option selected="true" disabled="disabled">Choose from here</option>
+                  @php
+                  $items = DB::select("SELECT * from unit3");
+                  @endphp
+                  @forelse ($items as $item)
+                  <option class="form-control-label" value="{{ $item->unit_id  ?? '-' }}">{{ $item->unit_name  ?? '-' }}</option>
+                  @empty
+                  <option class="form-control-label">@lang('crud.common.no_items_found')</option>
+                  @endif
+              </select>
+          </div>       
             <div class="modal-footer">
               <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>
               <button type="submit" class="btn btn-sm btn-success"> <i class="ti-save-alt"></i> Save</button>

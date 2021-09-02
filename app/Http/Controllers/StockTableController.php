@@ -45,6 +45,9 @@ class StockTableController extends Controller
             compact('itemCategories', 'units')
         );
     }
+    public function addStock(){
+        return view('app.stock_tables.addStock');
+    }
 
     public function insert(Request $request){
         $salesid = "Item/".time();

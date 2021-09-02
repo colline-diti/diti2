@@ -23,10 +23,9 @@
                             $items = DB::select("SELECT * from category3");
                             @endphp
                             @forelse ($items as $item)
-        <option class="form-control-label" value="{{ $item->category_id  ?? '-' }}">{{ $item->category_name  ?? '-' }}</option>
+                            <option class="form-control-label" value="{{ $item->category_id  ?? '-' }}">{{ $item->category_name  ?? '-' }}</option>
                             @empty
                             <option class="form-control-label">@lang('crud.common.no_items_found')</option>
-
                             @endif
                         </select>
                     </div>

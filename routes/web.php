@@ -62,9 +62,11 @@ Route::prefix('/')
     ->group(function () {
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
-
         Route::resource('users', UserController::class);
-        Route::resource('stock-tables', StockTableController::class);
+        
+        //stock Table Routes
+        Route::get('/stock-tables/addStock', [StockTableController::class, 'addStock'])->name('stock-tables.addStock');
+        Route::resource('stock-tables', StockTableController::class);        
         Route::post('store-stock', [StockTableController::class, 'insert']);
         Route::post('store-item', [ItemCategoryController::class, 'insert']);
         Route::post('store-category', [ItemCategoryController::class, 'newCategory']);
