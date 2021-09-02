@@ -13,6 +13,10 @@ use App\Http\Requests\StockDischargeUpdateRequest;
 
 class StockDischargeController extends Controller
 {
+    public function stockDamages(){
+        
+        return view('app.stock_discharges.stockDamages');
+    }
 
     public function stockLevels(){
         

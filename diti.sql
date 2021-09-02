@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2021 at 10:07 PM
+-- Generation Time: Sep 02, 2021 at 08:52 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -59,30 +59,27 @@ CREATE TABLE `asset_types` (
 --
 
 CREATE TABLE `available_stock` (
+  `stockDetails_id` int(11) NOT NULL,
   `stock_id` int(11) NOT NULL,
   `item_id` int(11) NOT NULL,
-  `instock` int(56) NOT NULL,
-  `units` varchar(67) NOT NULL,
-  `section` varchar(56) NOT NULL,
-  `Date_rec` varchar(56) NOT NULL,
-  `Received_by` varchar(46) NOT NULL
+  `quantity_in` int(56) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `available_stock`
 --
 
-INSERT INTO `available_stock` (`stock_id`, `item_id`, `instock`, `units`, `section`, `Date_rec`, `Received_by`) VALUES
-(10, 0, 40, 'bottles', 'Dry Store', '12/04/21', 'Colline'),
-(11, 0, 120, 'bottles', 'Dry Store', '2021-09-01', 'Darby Bruen'),
-(12, 0, 100, 'kgs', 'Dry Store', '2021-09-01', 'Darby Bruen'),
-(13, 0, 80, 'Pieces', 'Dry Store', '2021-09-01', 'Darby Bruen'),
-(14, 0, 50, 'kgs', 'Dry Store', '2021-09-01', 'Darby Bruen'),
-(15, 0, 10, 'kgs', 'Dry Store', '2021-09-01', 'Darby Bruen'),
-(16, 0, 100, 'kgs', 'Dry Store', '2021-09-21', 'Darby Bruen'),
-(17, 0, 200, 'kgs', 'Dry Store', '2021-09-01', 'Darby Bruen'),
-(18, 9, 120, 'kgs', 'Dry Store', '2021-09-01', 'Darby Bruen'),
-(19, 9, 200, 'kgs', 'Dry Store', '2021-09-01', 'Darby Bruen');
+INSERT INTO `available_stock` (`stockDetails_id`, `stock_id`, `item_id`, `quantity_in`) VALUES
+(10, 0, 0, 40),
+(11, 0, 0, 120),
+(12, 0, 0, 100),
+(13, 0, 0, 80),
+(14, 0, 0, 50),
+(15, 0, 0, 10),
+(16, 0, 0, 100),
+(17, 0, 0, 200),
+(18, 0, 9, 120),
+(19, 0, 9, 200);
 
 -- --------------------------------------------------------
 
@@ -92,20 +89,24 @@ INSERT INTO `available_stock` (`stock_id`, `item_id`, `instock`, `units`, `secti
 
 CREATE TABLE `category3` (
   `category_id` int(11) NOT NULL,
-  `category_name` text NOT NULL
+  `category_name` text NOT NULL,
+  `unit_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `category3`
 --
 
-INSERT INTO `category3` (`category_id`, `category_name`) VALUES
-(2, 'Cups'),
-(3, 'Sodas'),
-(4, 'Rice'),
-(5, 'Juice'),
-(6, 'Equipment'),
-(7, 'Vegetables');
+INSERT INTO `category3` (`category_id`, `category_name`, `unit_id`) VALUES
+(2, 'Cups', 0),
+(3, 'Sodas', 0),
+(4, 'Rice', 0),
+(5, 'Juice', 0),
+(6, 'Equipment', 0),
+(7, 'Vegetables', 0),
+(8, 'Cooking oil', 5),
+(9, 'Soap', 7),
+(10, 'Cooking oil', 2);
 
 -- --------------------------------------------------------
 
@@ -139,7 +140,8 @@ CREATE TABLE `department3` (
 
 INSERT INTO `department3` (`department_id`, `department_name`) VALUES
 (1, 'Production'),
-(2, 'Servicing');
+(2, 'Servicing'),
+(3, 'Laundry');
 
 -- --------------------------------------------------------
 
@@ -822,29 +824,55 @@ INSERT INTO `sales3` (`sales_id`, `product_name`, `unit_cost`, `Quantity`, `serv
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stock_damages`
+--
+
+CREATE TABLE `stock_damages` (
+  `damage_id` int(11) NOT NULL,
+  `damage_date` date NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` int(200) NOT NULL,
+  `remarks` varchar(255) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `stock_damages`
+--
+
+INSERT INTO `stock_damages` (`damage_id`, `damage_date`, `item_id`, `quantity`, `remarks`, `user_id`) VALUES
+(1, '2021-09-02', 0, 20, 'Transportation', 0),
+(2, '2021-09-02', 0, 12, 'Handling', 0),
+(3, '2021-09-02', 8, 13, 'Poor Handling', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stock_discharge3`
 --
 
 CREATE TABLE `stock_discharge3` (
-  `id` int(11) NOT NULL,
-  `Item_name` text NOT NULL,
+  `stockDischarge_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
   `quantity_discharged` int(11) NOT NULL,
-  `discharged_by` text NOT NULL,
-  `date_recorded` text NOT NULL
+  `department_id` int(11) NOT NULL,
+  `discharge_date` date NOT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `stock_discharge3`
 --
 
-INSERT INTO `stock_discharge3` (`id`, `Item_name`, `quantity_discharged`, `discharged_by`, `date_recorded`) VALUES
-(1, 'Rice', 67, 'Darby Bruen', '2021-08-03'),
-(2, 'Rice', 6, 'Darby Bruen', '2021-08-17'),
-(3, 'Rice', 6, 'Darby Bruen', '2021-08-10'),
-(4, 'Fanta', 80, 'Darby Bruen', '2021-08-31'),
-(5, 'Plates', 200, 'Darby Bruen', '2021-09-01'),
-(6, 'Posho', 50, 'Darby Bruen', '2021-09-01'),
-(7, 'Kayiso', 50, 'Darby Bruen', '2021-09-01');
+INSERT INTO `stock_discharge3` (`stockDischarge_id`, `item_id`, `quantity_discharged`, `department_id`, `discharge_date`, `user_id`) VALUES
+(1, 0, 67, 0, '2021-08-03', 0),
+(2, 0, 6, 0, '2021-08-17', 0),
+(3, 0, 6, 0, '2021-08-10', 0),
+(4, 0, 80, 0, '2021-08-31', 0),
+(5, 0, 200, 0, '2021-09-01', 0),
+(6, 0, 50, 0, '2021-09-01', 0),
+(7, 0, 50, 0, '2021-09-01', 0),
+(8, 3, 12, 2, '2021-09-02', 1);
 
 -- --------------------------------------------------------
 
@@ -906,6 +934,19 @@ INSERT INTO `stock_entry` (`entry_id`, `Number`, `Remarks`, `item_code`, `Date_r
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `stock_table`
+--
+
+CREATE TABLE `stock_table` (
+  `stock_id` int(11) NOT NULL,
+  `stock_date` date NOT NULL,
+  `stock_receipt` varchar(12) NOT NULL,
+  `user_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `stock_tables`
 --
 
@@ -957,7 +998,7 @@ CREATE TABLE `tax_rates` (
 --
 
 CREATE TABLE `unit3` (
-  `id` int(11) NOT NULL,
+  `unit_id` int(11) NOT NULL,
   `unit_name` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -965,11 +1006,13 @@ CREATE TABLE `unit3` (
 -- Dumping data for table `unit3`
 --
 
-INSERT INTO `unit3` (`id`, `unit_name`) VALUES
+INSERT INTO `unit3` (`unit_id`, `unit_name`) VALUES
 (1, 'kgs'),
 (2, 'jerricans'),
 (3, 'bottles'),
-(4, 'Pieces');
+(4, 'Pieces'),
+(5, 'Litres'),
+(7, 'Bars');
 
 -- --------------------------------------------------------
 
@@ -1021,14 +1064,16 @@ ALTER TABLE `asset_types`
 -- Indexes for table `available_stock`
 --
 ALTER TABLE `available_stock`
-  ADD PRIMARY KEY (`stock_id`),
-  ADD KEY `Items` (`item_id`);
+  ADD PRIMARY KEY (`stockDetails_id`),
+  ADD KEY `Items` (`item_id`),
+  ADD KEY `stock_id` (`stock_id`);
 
 --
 -- Indexes for table `category3`
 --
 ALTER TABLE `category3`
-  ADD PRIMARY KEY (`category_id`);
+  ADD PRIMARY KEY (`category_id`),
+  ADD KEY `unit_id` (`unit_id`);
 
 --
 -- Indexes for table `clients`
@@ -1194,10 +1239,21 @@ ALTER TABLE `sales`
   ADD KEY `sales_payment_types_id_foreign` (`payment_types_id`);
 
 --
+-- Indexes for table `stock_damages`
+--
+ALTER TABLE `stock_damages`
+  ADD PRIMARY KEY (`damage_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
 -- Indexes for table `stock_discharge3`
 --
 ALTER TABLE `stock_discharge3`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`stockDischarge_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `item_id` (`item_id`),
+  ADD KEY `department_id` (`department_id`);
 
 --
 -- Indexes for table `stock_discharges`
@@ -1212,6 +1268,13 @@ ALTER TABLE `stock_discharges`
 --
 ALTER TABLE `stock_entry`
   ADD PRIMARY KEY (`entry_id`);
+
+--
+-- Indexes for table `stock_table`
+--
+ALTER TABLE `stock_table`
+  ADD PRIMARY KEY (`stock_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Indexes for table `stock_tables`
@@ -1230,7 +1293,7 @@ ALTER TABLE `tax_rates`
 -- Indexes for table `unit3`
 --
 ALTER TABLE `unit3`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`unit_id`);
 
 --
 -- Indexes for table `users`
@@ -1259,13 +1322,13 @@ ALTER TABLE `asset_types`
 -- AUTO_INCREMENT for table `available_stock`
 --
 ALTER TABLE `available_stock`
-  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `stockDetails_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `category3`
 --
 ALTER TABLE `category3`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `clients`
@@ -1277,7 +1340,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT for table `department3`
 --
 ALTER TABLE `department3`
-  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `department_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `discounts3`
@@ -1394,10 +1457,16 @@ ALTER TABLE `sales`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `stock_damages`
+--
+ALTER TABLE `stock_damages`
+  MODIFY `damage_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `stock_discharge3`
 --
 ALTER TABLE `stock_discharge3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `stockDischarge_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `stock_discharges`
@@ -1410,6 +1479,12 @@ ALTER TABLE `stock_discharges`
 --
 ALTER TABLE `stock_entry`
   MODIFY `entry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `stock_table`
+--
+ALTER TABLE `stock_table`
+  MODIFY `stock_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `stock_tables`
@@ -1427,7 +1502,7 @@ ALTER TABLE `tax_rates`
 -- AUTO_INCREMENT for table `unit3`
 --
 ALTER TABLE `unit3`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `unit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `users`

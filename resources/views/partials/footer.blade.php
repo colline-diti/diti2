@@ -24,6 +24,11 @@ $(document).ready( function () {
     $('#departments').DataTable();
 } );
 
+//search for damages
+$(document).ready( function () {
+    $('#damages').DataTable();
+} );
+
 
 $('#editStock').on('show.bs.modal', function (e) {
   // do something...

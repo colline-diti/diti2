@@ -66,7 +66,8 @@ Route::prefix('/')
         
         //stock Table Routes
         Route::get('/stock-tables/addStock', [StockTableController::class, 'addStock'])->name('stock-tables.addStock');
-        Route::resource('stock-tables', StockTableController::class);        
+        Route::resource('stock-tables', StockTableController::class);
+        Route::post('store-damages', [StockTableController::class, 'storeDamages']);        
         Route::post('store-stock', [StockTableController::class, 'insert']);
         Route::post('store-item', [ItemCategoryController::class, 'insert']);
         Route::post('store-category', [ItemCategoryController::class, 'newCategory']);
@@ -87,6 +88,7 @@ Route::prefix('/')
         Route::get("image-upload",[ImageUploadController::class,'img_upload'])->name("img.upload");
         Route::post("imgstore",[ImageUploadController::class,'imagestore'])->name("img.store");
 
+        Route::get('/stock-discharges/stockDamages', [StockDischargeController::class, 'stockDamages'])->name('stock-discharges.stockDamages');
         Route::get('/stock-discharges/stockLevels', [StockDischargeController::class, 'stockLevels'])->name('stock-discharges.stockLevels');
         Route::resource('stock-discharges', StockDischargeController::class);
         Route::resource('res-categories', ResCategoryController::class);

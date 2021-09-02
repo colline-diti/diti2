@@ -10,15 +10,15 @@
                     <span class="glyphicon glyphicon-edit"></span>
                     Items
                 </a>
-                <a class="btn btn-sm btn-info ml-1" href="{{ route('item-categories.categories') }}">
+                <a class="btn btn-sm btn-info" href="{{ route('item-categories.categories') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Categories
                 </a>
-                <a class="btn btn-sm btn-success ml-1"  href="{{ route('item-categories.units') }}">
+                <a class="btn btn-sm btn-success"  href="{{ route('item-categories.units') }}">
                     <span class="glyphicon glyphicon-edit">
                     Units
                 </a>
-                <a class="btn btn-sm btn-info ml-1" href="{{ route('item-categories.departments') }}">
+                <a class="btn btn-sm btn-info" href="{{ route('item-categories.departments') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Departments
                 </a>
@@ -54,7 +54,7 @@
                                         <thead>
                                             <tr>
                                                 <th class="text-left">
-                                                    NO.
+                                                    ID
                                                 </th>
                                                 <th class="text-left">
                                                     Unit Name
@@ -69,7 +69,7 @@
                                             $items = DB::select("SELECT * FROM unit3");
                                             @endphp
                                             @forelse ($items as $itemCategory) <tr>
-                                                <td>{{ $itemCategory->id  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->unit_id  ?? '-' }}</td>
                                                 <td>{{ $itemCategory->unit_name  ?? '-' }}</td>
                                                 <td class="text-center" style="width: 134px;">
                                                     <div role="group" aria-label="Row Actions" class="btn-group">
@@ -79,20 +79,7 @@
                                                                 <i class="icon ti-pencil-alt"></i>
                                                             </button>
                                                         </a>
-                                                        @endcan @can('view', $itemCategory)
-                                                        <a href="">
-                                                            <button type="button" class="btn btn-sm btn-light text-success">
-                                                                <i class="icon ti-eye"></i>
-                                                            </button>
-                                                        </a>
-                                                        @endcan @can('delete', $itemCategory)
-                                                        <form action="" method="POST" onsubmit="return confirm('{{ __('crud.common.are_you_sure') }}')">
-                                                            @csrf @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-light text-danger">
-                                                                <i class="icon ti-trash"></i>
-                                                            </button>
-                                                        </form>
-                                                        @endcan
+                                                        @endcan  
                                                     </div>
                                                 </td>
                                             </tr>

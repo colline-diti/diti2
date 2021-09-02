@@ -13,7 +13,11 @@
                 <a class="btn btn-sm btn-info ml-1"  href="{{ route('item-categories.categories') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Discharge Stock
-                </a>                            
+                </a>
+                <a class="btn btn-sm btn-info ml-1" href="{{ route('stock-discharges.stockDamages') }}">
+                  <span class="glyphicon glyphicon-edit">
+                  Damages
+              </a>                             
             </h4>
            
         </div>
@@ -34,7 +38,7 @@
                         </ul>
                       </div>
                       <div class="card-body"><br>                     
-                        <form method="post" action="{{url('store-stock')}}">
+                        <form method="POST" action="{{ url('store-stock')}}">
                             <table class="table">
                               <thead>
                                 <tr>
@@ -46,8 +50,8 @@
                               <tbody>
                                 <tr id="addRow">
                                   <td class="col-xs-4">                                    
-                                    <select class="form-control-label addmain col-sm-12" name="category_id" id="exampleFormControlSelect1">
-                                        <option selected="true" disabled="disabled">Choose from here</option>
+                                    <select class="form-control-label addmain col-sm-12" name="item_id">
+                                        <option selected="true" disabled="disabled">Select Item</option>
                                         @php
                                         $items = DB::select("SELECT * from items");
                                         @endphp
@@ -60,7 +64,7 @@
                                     </select>
                                   </td>                                  
                                   <td class="col-xs-4">
-                                    <input class="form-control-label addPrefer col-12" type="number" placeholder="Enter Quantity" />
+                                    <input class="form-control-label addPrefer col-12" name="quantity_in" type="number" placeholder="Enter Quantity" />
                                   </td>                                                                 
                                   <td class="col-xs-4 text-center">
                                     <span class="addBtn">
@@ -72,9 +76,9 @@
                             </table> 
                               <div class="modal-footer row">
                                   <label class="col-sm- 2col-form-label">Date</label>
-                                  <input style="margin-right: 14%;" type="date" id="date" name="date" class="form-control-label col-sm-4">
+                                  <input style="margin-right: 14%;" type="date" name="stock_date" id="date" name="date" class="form-control-label col-sm-4">
                                   <label class="col-form-label">Upload Receipt</label>
-                                  <input  type="file" class=" col-sm-4 form-control-label">
+                                  <input  type="file" name="stock_reciept" class=" col-sm-4 form-control-label">
                               </div>                   
                                 <div class="modal-footer">
                                   <button style="margin-right: 19%;" type="submit" class="btn btn-sm btn-success"> <i class="ti-save-alt"></i> Save</button>

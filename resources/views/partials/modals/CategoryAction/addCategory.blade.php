@@ -17,7 +17,7 @@
             </div>
             <div class="form-group row">
               <label class="col-sm-4 col-form-label">Units</label>
-              <select class="form-control-label col-sm-7" name="category_id" id="exampleFormControlSelect1">
+              <select class="form-control-label col-sm-7" name="unit_id" id="exampleFormControlSelect1">
                   <option selected="true" disabled="disabled">Choose from here</option>
                   @php
                   $items = DB::select("SELECT * from unit3");

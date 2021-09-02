@@ -13,13 +13,13 @@
                     {{ csrf_field() }}
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Stock Item</label>
-                        <select class="form-control-label col-sm-8" name="item_name" id="exampleFormControlSelect1">
-                            <option selected="true" disabled="disabled">Choose from here</option>
+                        <select class="form-control-label col-sm-8" name="item_id" id="exampleFormControlSelect1">
+                            <option selected="true" disabled="disabled">Select Item</option>
                             @php
                             $items = DB::select("select * from items");
                             @endphp
                             @forelse ($items as $item)
-                            <option class="form-control-label">{{ $item->item_name  ?? '-' }}</option>
+                            <option class="form-control-label" value="{{ $item->item_id  ?? '-' }}">{{ $item->item_name  ?? '-' }}</option>
                             @empty
                             <option class="form-control-label">@lang('crud.common.no_items_found')</option>
                             
@@ -32,11 +32,26 @@
                     </div>
                     <div class="form-group row" hidden>
                         <label class="col-sm-3 col-form-label">Discharged By</label>
-                        <input type="text" name="receved_by" value="{{ Auth::user()->name }}" class="form-control-label col-sm-8">
+                        <input type="text" name="user_id" value="{{ Auth::user()->id }}" class="form-control-label col-sm-8">
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Department</label>
+                        <select class="form-control-label col-sm-8" name="department_id" id="exampleFormControlSelect1">
+                            <option selected="true" disabled="disabled">Select Department</option>
+                            @php
+                            $items = DB::select("select * from department3");
+                            @endphp
+                            @forelse ($items as $item)
+                            <option class="form-control-label" value="{{ $item->department_id  ?? '-' }}">{{ $item->department_name  ?? '-' }}</option>
+                            @empty
+                            <option class="form-control-label">@lang('crud.common.no_items_found')</option>
+                            
+                            @endif
+                        </select>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-3 col-form-label">Date</label>
-                        <input type="date" name="date" class="form-control-label col-sm-8" placeholder="Enter date">
+                        <input type="date" name="discharge_date" class="form-control-label col-sm-8" placeholder="Enter date">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancel</button>

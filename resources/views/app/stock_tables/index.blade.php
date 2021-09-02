@@ -10,10 +10,14 @@
                     <span class="glyphicon glyphicon-edit"></span>
                     Stock
                 </a>
-                <a class="btn btn-sm btn-info ml-1"  href="{{ route('item-categories.categories') }}">
+                <a class="btn btn-sm btn-info"  href="{{ route('stock-discharges.index') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Discharge Stock
-                </a>                            
+                </a>  
+                <a class="btn btn-sm btn-info"  href="{{ route('stock-discharges.stockDamages') }}">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    Damages
+                </a>                          
             </h4>
            
         </div>

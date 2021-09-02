@@ -6,19 +6,19 @@
         <div class="col-lg- 12 p-r-0 title-margin-right">
             <h4 style="margin-bottom: 0.5em;" class="card-title">                
                 <!--Put Register link-->
-                <a class="btn btn-sm btn-success ml-3" href="">
+                <a class="btn btn-sm btn-success ml-3" href="{{ route('item-categories.index') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Items
                 </a>
-                <a class="btn btn-sm btn-info ml-1"  href="{{ route('item-categories.categories') }}">
+                <a class="btn btn-sm btn-info"  href="{{ route('item-categories.categories') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Categories
                 </a>
-                <a class="btn btn-sm btn-info ml-1" data-toggle="modal" data-target="#addUnits" href="">
+                <a class="btn btn-sm btn-info" href="{{ route('item-categories.units') }}">
                     <span class="glyphicon glyphicon-edit">
                     Units
                 </a>
-                <a class="btn btn-sm btn-info ml-1" data-toggle="modal" data-target="#addDepartment" href="">
+                <a class="btn btn-sm btn-info"  href="{{ route('item-categories.departments') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Departments
                 </a>                

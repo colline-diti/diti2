@@ -57,9 +57,11 @@ class ItemCategoryController extends Controller
     //adding new category
     public function newCategory(Request $request){
         $category_name = $request->input('category_name');
+        $unit_id = $request->input('unit_id');
        // $served_by = $request->input('served_by');
         $data = array(
         "category_name" => $category_name,
+        "unit_id" => $unit_id,
         );
         DB::table('category3')->insert($data);
         return redirect('item-categories')->withSuccess(__('crud.common.created'));

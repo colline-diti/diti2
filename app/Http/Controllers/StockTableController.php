@@ -49,35 +49,56 @@ class StockTableController extends Controller
         return view('app.stock_tables.addStock');
     }
 
+    //Storing Damages
+    public function storeDamages(Request $request){
+        $salesid = "Item/".time();
+        $item_id = $request->input('item_id');
+        $damage_date = $request->input('damage_date');
+        $quantity = $request->input('quantity');
+        $remarks = $request->input('remarks');
+        $id = $request->input('user_id');
+       
+        $data = array(
+        "item_id" => $item_id,
+        "damage_date" => $damage_date,
+        "quantity" => $quantity,
+        "remarks" => $remarks, 
+        "user_id" => $id,      
+        );
+        DB::table('stock_damages')->insert($data);
+        return redirect('/stock-discharges/stockDamages')->withSuccess(__('crud.common.created'));
+        }
+
     public function insert(Request $request){
         $salesid = "Item/".time();
         $item_id = $request->input('item_id');
-        $dameges = $request->input('dameges');
-        $total_recieved = $request->input('total_recieved');
-        $item_units = $request->input('item_units');
-        $store_section = $request->input('store_section');
-        $receved_by = $request->input('receved_by'); 
-        $date = $request->input('date'); 
-        $remarks = $request->input('remarks'); 
-       // $served_by = $request->input('served_by');
+        $stock_id = $request->input('stock_id');
+        $quantity_in= $request->input('quantity_in');
+
+        $stock_date = $request->input('stock_date');
+        $stock_reciept = $request->input('stock_reciept');
+        
         $data = array(
         "item_id" => $item_id,
-        "instock" => $total_recieved - $dameges,
-        "units" => $item_units,
-        "section" => $store_section,
-        "Received_by" => $receved_by,
-        "Date_rec" => $date,
+        "stock_id" => $stock_id,
+        "quantity_in" => $quantity_in,
+
+        "stock_date" => $stock_date,
+        "stock_reciept" => $stock_reciept,
+
+
         );
         DB::table('available_stock')->insert($data);
+        DB::table('stock_table')->where(['stock_date' => $stock_date, 'stock_reciept' => $stock_reciept ]);
 
-        // $served_by = $request->input('served_by');
-        $stockentry = array(
-            "Number" => $total_recieved,
-            "Remarks" => $remarks,
-            "item_code" => $salesid,
-            "Date_rec" => $date,
-            );
-        DB::table('stock_entry')->insert($stockentry);
+        //$served_by = $request->input('served_by');
+        //$stockentry = array(
+           // "Number" => $total_recieved,
+           // "Remarks" => $remarks,
+           // "item_code" => $salesid,
+           // "Date_rec" => $date,
+          //  );
+        //DB::table('stock_entry')->insert($stockentry); --->
         return redirect('stock-tables')->withSuccess(__('crud.common.created'));
         }
 
@@ -85,20 +106,22 @@ class StockTableController extends Controller
         //function discharge
         public function discharge(Request $request){
             $salesid = "Item/".time();
-            $item_name = $request->input('item_name');
+            $item_id = $request->input('item_id');
             $quantity_discharged = $request->input('quantity_discharged');
-            $receved_by = $request->input('receved_by'); 
-            $date = $request->input('date'); 
-           // $served_by = $request->input('served_by');
+            $department_id = $request->input('department_id'); 
+            $discharge_date = $request->input('discharge_date'); 
+            $user_id = $request->input('user_id'); 
+           
             $data = array(
-            "Item_name" => $item_name,
+            "item_id" => $item_id,
             "quantity_discharged" => $quantity_discharged,
-            "discharged_by" => $receved_by,
-            "date_recorded" => $date,
+            "department_id" => $department_id,
+            "discharge_date" => $discharge_date,
+            "user_id" => $user_id,
             );
             DB::table('stock_discharge3')->insert($data);
-            DB::table('available_stock')->where('Name',$item_name)->decrement('instock', $quantity_discharged);
-            return redirect('stock-tables')->withSuccess(__('crud.common.created'));
+            //DB::table('available_stock')->where('Name',$item_name)->decrement('instock', $quantity_discharged);
+            return redirect('stock-discharges')->withSuccess(__('crud.common.created'));
             }
     /**
      * @param \App\Http\Requests\StockTableStoreRequest $request

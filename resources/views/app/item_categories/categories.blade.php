@@ -10,15 +10,15 @@
                     <span class="glyphicon glyphicon-edit"></span>
                     Items
                 </a>
-                <a class="btn btn-sm btn-success ml-1" href="{{ route('item-categories.categories') }}">
+                <a class="btn btn-sm btn-success" href="{{ route('item-categories.categories') }}">
                     <span class="glyphicon glyphicon-edit"></span>
                     Categories
                 </a>
-                <a class="btn btn-sm btn-info ml-1"  href="{{ route('item-categories.units') }}">
+                <a class="btn btn-sm btn-info"  href="{{ route('item-categories.units') }}">
                     <span class="glyphicon glyphicon-edit"></span> 
                     Units
                 </a>
-                <a class="btn btn-sm btn-info ml-1"  href="{{ route('item-categories.departments') }}">
+                <a class="btn btn-sm btn-info"  href="{{ route('item-categories.departments') }}">
                     <span class="glyphicon glyphicon-edit"></span> 
                     Departments
                 </a>                
@@ -57,6 +57,9 @@
                                             <th class="text-left">
                                                 Category Name
                                             </th>
+                                            <th class="text-left">
+                                                Units
+                                            </th>
                                             <th class="text-center">
                                                 @lang('crud.common.actions')
                                             </th>
@@ -64,11 +67,12 @@
                                     </thead>
                                     <tbody>
                                         @php
-                                        $items = DB::select("SELECT * FROM category3");
+                                        $items = DB::select("select * from category3 c ,unit3 u WHERE c.category_id=u.unit_id");
                                         @endphp
                                         @forelse ($items as $itemCategory) <tr>
                                             <td>{{ $itemCategory->category_id  ?? '-' }}</td>
                                             <td>{{ $itemCategory->category_name  ?? '-' }}</td>
+                                            <td>{{ $itemCategory->unit_name  ?? '-' }}</td>
                                             <td class="text-center" style="width: 134px;">
                                                 <div role="group" aria-label="Row Actions" class="btn-group">
                                                     @can('update', $itemCategory)

@@ -6,22 +6,18 @@
         <div class="col-lg- 12 p-r-0 title-margin-right">
             <h4 style="margin-bottom: 0.5em;" class="card-title">                
                 <!--Put Register link-->
-                <a class="btn btn-sm btn-info ml-3" href="{{ route('item-categories.index') }}">
+                <a class="btn btn-sm btn-info ml-3" href="{{ route('stock-tables.index') }}">
                     <span class="glyphicon glyphicon-edit"></span>
-                    Items
+                    Stock
                 </a>
-                <a class="btn btn-sm btn-info"  href="{{ route('item-categories.categories') }}">
+                <a class="btn btn-sm btn-info"  href="{{ route('stock-discharges.index') }}">
                     <span class="glyphicon glyphicon-edit"></span>
-                    Categories
+                    Discharge Stock
                 </a>
-                <a class="btn btn-sm btn-info" href="{{ route('item-categories.units') }}">
+                <a class="btn btn-sm btn-success" href="{{ route('stock-discharges.stockDamages') }}">
                     <span class="glyphicon glyphicon-edit">
-                    Units
-                </a>
-                <a class="btn btn-sm btn-success" href="{{ route('item-categories.departments') }}">
-                    <span class="glyphicon glyphicon-edit"></span>
-                    Departments
-                </a>                
+                    Damages
+                </a>                    
             </h4>
            
         </div>
@@ -41,22 +37,28 @@
                                 <h4 style="margin-bottom: 0.5em;" class="card-title">                                   
                                     <!-- Create new User-->
                                     <a><span class="glyphicon glyphicon-edit"></span>
-                                        Departments
+                                        Damaged Items
                                     </a>  
-                                    <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#addDepartment" href="">
+                                    <a class="btn btn-sm btn-success" data-toggle="modal" data-target="#addDamage" href="">
                                         <span class="glyphicon glyphicon-edit"></span> <i class="ti-plus"></i>
-                                       Add Department
+                                        Add Damage
                                     </a>                                  
                                 </h4>
                                 <div class="table-responsive">
-                                    <table class="table table-borderless table-hover" id="departments">
+                                    <table class="table table-border table-hover" id="damages">
                                         <thead>
                                             <tr>
                                                 <th class="text-left">
-                                                    ID
+                                                    Date
                                                 </th>
                                                 <th class="text-left">
-                                                    Departments
+                                                    Item
+                                                </th>
+                                                <th class="text-left">
+                                                    Quantity
+                                                </th>
+                                                <th class="text-left">
+                                                    Reason for Damages
                                                 </th>
                                                 <th class="text-center">
                                                     @lang('crud.common.actions')
@@ -65,11 +67,13 @@
                                         </thead>
                                         <tbody>
                                             @php
-                                            $items = DB::select("select * from department3");
+                                            $items = DB::select("select * from stock_damages");
                                             @endphp
                                             @forelse ($items as $itemCategory) <tr>
-                                                <td>{{ $itemCategory->department_id  ?? '-' }}</td>
-                                                <td>{{ $itemCategory->department_name  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->damage_date ?? '-' }}</td>
+                                                <td>{{ $itemCategory->item_id ?? '-' }}</td>
+                                                <td>{{ $itemCategory->quantity  ?? '-' }}</td>
+                                                <td>{{ $itemCategory->remarks  ?? '-' }}</td>
                                                 <td class="text-center" style="width: 134px;">
                                                     <div role="group" aria-label="Row Actions" class="btn-group">
                                                         @can('update', $itemCategory)
@@ -78,7 +82,7 @@
                                                                 <i class="icon ti-pencil-alt"></i>
                                                             </button>
                                                         </a>
-                                                        @endcan
+                                                        @endcan 
                                                     </div>
                                                 </td>
                                             </tr>
@@ -93,14 +97,14 @@
                                         <tfoot>
                                             <tr>
                                                 <td colspan="4">
-                                                    
+                                                  
                                                 </td>
                                             </tr>
                                         </tfoot>
                                     </table>
                                     <h4 style="margin-top: 0.5em;" class="card-title">
                                         <!--Put Register link-->
-                                    <button style="margin-left: 78%;" class="btn btn-sm btn-danger">
+                                    <button style="margin-left: 75%;" class="btn btn-sm btn-danger">
                                         <span class="glyphicon glyphicon-edit"></span>
                                         Export to PDF
                                     </button>
@@ -123,7 +127,9 @@
 </div>
 </div>
 
-@include('partials.modals.CategoryAction.addDepartment')
+
+
+@include('partials.modals.StockAction.addDamage')
 @include('partials.footer')
 </section>
 </div>
